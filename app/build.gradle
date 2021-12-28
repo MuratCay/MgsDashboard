@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.mgssoftware.mgsdashboard"
-        minSdk 21
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -53,4 +53,5 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    implementation 'com.github.martinstamenkovski:ARIndicatorView:2.0.0'
 }

@@ -63,10 +63,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                         requireContext(),
                         R.color.tab_layout_item_selected_petner
                     )
-
                 }
-
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })

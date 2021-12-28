@@ -82,4 +82,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/numberOfPeopleOnline" />
 
+    <com.arindicatorview.ARIndicatorView
+        android:id="@+id/ar_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:animate_indicator_scrubbing="true"
+        app:indicator_animation="@anim/zoom_in"
+        app:indicator_color="@color/indicator_unselected_color"
+        app:indicator_scrubbing="true"
+        app:indicator_shape="@drawable/round_shape"
+        app:indicator_size="25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvGraphic"
+        app:number_of_indicators="5"
+        app:selected_color="@color/graphic_orange" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,4 +12,5 @@
     <color name="avfast_background_color">#404140</color>
     <color name="graphic_background_color">#727272</color>
     <color name="gray">@android:color/darker_gray</color>
+    <color name="indicator_unselected_color">#85580A</color>
 </resources>
