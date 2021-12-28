@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="toplam_kullanici_sayisi">TOPLAM KULLANICI SAYISI</string>
+    <string name="_100">100</string>
+    <string name="online_ki_i_say_s">Online Kişi Sayısı</string>
+    <string name="_7">7</string>
+    <string name="bu_ay_kayitli_kullanici">BU AY KAYITLI KULLANICI</string>
+    <string name="_10">10</string>
+</resources>
