@@ -1,6 +1,6 @@
 package com.mgssoftware.mgsdashboard.model
 
-data class Registrants(
+data class PetnerRegistrants(
     val personImage: Int,
     val personDescription: String,
     val dateOfRegistration: String

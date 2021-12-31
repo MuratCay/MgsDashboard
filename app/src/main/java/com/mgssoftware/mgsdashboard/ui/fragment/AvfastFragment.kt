@@ -4,20 +4,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mgssoftware.mgsdashboard.R
-import com.mgssoftware.mgsdashboard.adapters.AssignmentAdapter
+import com.mgssoftware.mgsdashboard.adapters.AvfastAssignmentAdapter
 import com.mgssoftware.mgsdashboard.adapters.AvfastGraphicAdapter
-import com.mgssoftware.mgsdashboard.adapters.RegistrantsAdapter
+import com.mgssoftware.mgsdashboard.adapters.AvfastRegistrantsAdapter
 import com.mgssoftware.mgsdashboard.base.BaseFragment
 import com.mgssoftware.mgsdashboard.databinding.FragmentAvfastBinding
-import com.mgssoftware.mgsdashboard.model.Assignment
-import com.mgssoftware.mgsdashboard.model.Registrants
+import com.mgssoftware.mgsdashboard.model.AvfastAssignment
+import com.mgssoftware.mgsdashboard.model.AvfastRegistrants
 
 
 class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding::inflate) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val barEntryList = listOf<Pair<Float,Float>>()
         configureGraphicRecyclerView()
         addIndicator()
         configureRegistrantsRecyclerView()
@@ -25,32 +24,40 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
     }
 
     private fun configureAssignmentRecyclerView() {
-        val assignmentList = arrayListOf<Assignment>()
+        val assignmentList = arrayListOf<AvfastAssignment>()
         val assignment1 =
-            Assignment(R.drawable.ic_notice_orange, "Bursa ilinde yeni bir görev", "2 gün önce")
+            AvfastAssignment(
+                R.drawable.ic_notice_orange,
+                "Bursa ilinde yeni bir görev",
+                "2 gün önce"
+            )
         assignmentList.add(assignment1)
 
         repeat(9) {
             val assignment2 =
-                Assignment(R.drawable.ic_notice_orange, "E*** A*** kayıt oldu.", "3 gün önce")
+                AvfastAssignment(R.drawable.ic_notice_orange, "E*** A*** kayıt oldu.", "3 gün önce")
             assignmentList.add(assignment2)
         }
         binding.rvAssignment?.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        val adapter = AssignmentAdapter(assignmentList)
+        val adapter = AvfastAssignmentAdapter(assignmentList)
         binding.rvAssignment?.adapter = adapter
     }
 
     private fun configureRegistrantsRecyclerView() {
-        val registrantsList = arrayListOf<Registrants>()
+        val registrantsList = arrayListOf<AvfastRegistrants>()
         repeat(10) {
             val registrants =
-                Registrants(R.drawable.ic_person_orange, "E*** A*** kayıt oldu.", "2 gün önce")
+                AvfastRegistrants(
+                    R.drawable.ic_person_orange,
+                    "E*** A*** kayıt oldu.",
+                    "2 gün önce"
+                )
             registrantsList.add(registrants)
         }
         binding.rvRegistrants?.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        val adapter = RegistrantsAdapter(registrantsList)
+        val adapter = AvfastRegistrantsAdapter(registrantsList)
         binding.rvRegistrants?.adapter = adapter
     }
 
@@ -63,13 +70,13 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
         val barBottomValue = arrayListOf("0", "1", "2", "3", "4", "5")
         val adapter = AvfastGraphicAdapter(list, descriptionList, barBottomValue)
 
-        binding.rvGraphic.layoutManager =
+        binding.rvGraphicAvfast.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.rvGraphic.adapter = adapter
+        binding.rvGraphicAvfast.adapter = adapter
     }
 
     private fun addIndicator() {
-        binding.arIndicator?.attachTo(binding.rvGraphic, true)
+        binding.arIndicator?.attachTo(binding.rvGraphicAvfast, true)
     }
 
 }

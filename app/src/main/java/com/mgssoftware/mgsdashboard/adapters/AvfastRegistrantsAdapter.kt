@@ -1,21 +1,21 @@
 package com.mgssoftware.mgsdashboard.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mgssoftware.mgsdashboard.R
-import com.mgssoftware.mgsdashboard.databinding.ItemRegistrantsRecyclerBinding
-import com.mgssoftware.mgsdashboard.model.Assignment
-import com.mgssoftware.mgsdashboard.model.Registrants
+import com.mgssoftware.mgsdashboard.databinding.AvfastItemRegistrantsRecyclerBinding
+import com.mgssoftware.mgsdashboard.model.AvfastRegistrants
 
-class RegistrantsAdapter(private val registrantsList: ArrayList<Registrants>) :
-    RecyclerView.Adapter<RegistrantsAdapter.RegistrantsViewHolder>() {
+class AvfastRegistrantsAdapter(private val registrantsList: ArrayList<AvfastRegistrants>) :
+    RecyclerView.Adapter<AvfastRegistrantsAdapter.RegistrantsViewHolder>() {
 
-    private lateinit var binding: ItemRegistrantsRecyclerBinding
+    private lateinit var binding: AvfastItemRegistrantsRecyclerBinding
 
-    inner class RegistrantsViewHolder(val itemBinding: ItemRegistrantsRecyclerBinding) :
+    inner class RegistrantsViewHolder(itemBinding: AvfastItemRegistrantsRecyclerBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(data: Registrants) {
+        fun bind(data: AvfastRegistrants) {
             binding.imgRegistrants.setImageResource(R.drawable.ic_person_orange)
             binding.txtRegistrantsInfo.text = data.personDescription
             binding.txtDateOfRegistrants.text = data.dateOfRegistration
@@ -25,7 +25,7 @@ class RegistrantsAdapter(private val registrantsList: ArrayList<Registrants>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RegistrantsViewHolder {
         binding =
-            ItemRegistrantsRecyclerBinding.inflate(
+            AvfastItemRegistrantsRecyclerBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -35,9 +35,13 @@ class RegistrantsAdapter(private val registrantsList: ArrayList<Registrants>) :
 
     override fun onBindViewHolder(holder: RegistrantsViewHolder, position: Int) {
         holder.bind(registrantsList[position])
+
+        if (position == registrantsList.size - 1) {
+            binding.line.visibility = View.GONE
+        }else {
+            View.VISIBLE
+        }
     }
 
     override fun getItemCount() = registrantsList.size
-
-
 }

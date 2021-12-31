@@ -10,27 +10,26 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.mgssoftware.mgsdashboard.R
-import com.mgssoftware.mgsdashboard.databinding.ItemAvfastGraphicBinding
+import com.mgssoftware.mgsdashboard.databinding.ItemPetnerGraphicBinding
 
-class AvfastGraphicAdapter(
+class PetnerGraphicAdapter(
     private val graphicsTitle: List<String>,
     private val graphicsDescription: List<String>,
     private val barBottomValue: List<String>
-//    val barEntryList: List<Pair<Float,Float>>
-) : RecyclerView.Adapter<AvfastGraphicAdapter.AvfastViewHolder>() {
+) : RecyclerView.Adapter<PetnerGraphicAdapter.PetnerViewHolder>() {
 
-    private lateinit var binding: ItemAvfastGraphicBinding
+    private lateinit var binding: ItemPetnerGraphicBinding
 
-    inner class AvfastViewHolder(val itemBinding: ItemAvfastGraphicBinding) :
+    inner class PetnerViewHolder(val itemBinding: ItemPetnerGraphicBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvfastViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetnerViewHolder {
         binding =
-            ItemAvfastGraphicBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AvfastViewHolder(binding)
+            ItemPetnerGraphicBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PetnerViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: AvfastViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PetnerViewHolder, position: Int) {
         val currentGraphicsTitle = graphicsTitle[position]
         val currentGraphicsDescription = graphicsDescription[position]
         holder.itemBinding.graphicTitleText.text = currentGraphicsTitle
@@ -48,9 +47,8 @@ class AvfastGraphicAdapter(
         val barDataSet = BarDataSet(barEntry, "")
         barDataSet.color = ContextCompat.getColor(
             context,
-            R.color.graphic_orange
+            R.color.application_purple
         )
-
         val barData = BarData(barDataSet)
         barData.setDrawValues(false)
         barData.barWidth = 0.75f
@@ -62,16 +60,16 @@ class AvfastGraphicAdapter(
             legend.formSize = 0f
             legend.textSize = 16f
             xAxis.valueFormatter = IndexAxisValueFormatter(barBottomValue)
-            xAxis.textColor = ContextCompat.getColor(context, R.color.white)
+            xAxis.textColor = ContextCompat.getColor(context, R.color.black)
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.isEnabled = true
             xAxis.textSize = 14f
             xAxis.axisLineWidth = 1f
-            xAxis.axisLineColor = ContextCompat.getColor(context, R.color.white)
-            xAxis.gridColor = ContextCompat.getColor(context, R.color.graphic_background_color)
+            xAxis.axisLineColor = ContextCompat.getColor(context, R.color.black)
+            xAxis.gridColor = ContextCompat.getColor(context, R.color.white)
             axisRight.isEnabled = false
-            axisLeft.textColor = ContextCompat.getColor(context, R.color.white)
-            axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.white)
+            axisLeft.textColor = ContextCompat.getColor(context, R.color.black)
+            axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.black)
             axisLeft.axisLineWidth = 1f
             axisLeft.isEnabled = true
             axisLeft.textSize = 14f

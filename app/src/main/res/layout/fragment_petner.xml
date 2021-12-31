@@ -113,5 +113,119 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtNumberOfAdoptions" />
+
+        <LinearLayout
+            android:id="@+id/viewRvGraphic"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/petner_corner_background"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/currentNumberOfAdoptions">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGraphicPetner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <com.arindicatorview.ARIndicatorView
+            android:id="@+id/ar_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:animate_indicator_scrubbing="true"
+            app:indicator_animation="@anim/zoom_in"
+            app:indicator_color="@color/indicator_unselected_color_petner"
+            app:indicator_scrubbing="true"
+            app:indicator_shape="@drawable/round_shape"
+            app:indicator_size="25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewRvGraphic"
+            app:layout_goneMarginTop="24dp"
+            app:number_of_indicators="5"
+            app:selected_color="@color/application_purple" />
+
+        <TextView
+            android:id="@+id/numberOfRegistered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="@string/kay_t_olanlar_7"
+            android:textColor="@color/application_purple"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/viewRvGraphic"
+            app:layout_constraintTop_toBottomOf="@id/ar_indicator" />
+
+        <LinearLayout
+            android:id="@+id/viewRvRegistrants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/avfast_corner_registrants"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/numberOfRegistered">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRegistrants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/numberOfRecentEvents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="@string/son_olaylar_7"
+            android:textColor="@color/application_purple"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/viewRvAssignment"
+            app:layout_constraintTop_toBottomOf="@id/viewRvRegistrants" />
+
+        <LinearLayout
+            android:id="@+id/viewRvAssignment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/avfast_corner_registrants"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="58dp"
+            app:layout_constraintTop_toBottomOf="@id/numberOfRecentEvents">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAssignment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp" />
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

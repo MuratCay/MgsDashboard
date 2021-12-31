@@ -12,10 +12,11 @@
     <color name="avfast_background_color">#404140</color>
     <color name="graphic_background_color">#727272</color>
     <color name="gray">@android:color/darker_gray</color>
-    <color name="indicator_unselected_color">#85580A</color>
+    <color name="indicator_unselected_color_avfast">#85580A</color>
     <color name="text_label_color_black_between_gray">#404140</color>
     <color name="line_border_color">#C9C9C9</color>
     <color name="petner_title_color">#2D2D2D</color>
     <color name="petner_page_background">#FBF2FF</color>
+    <color name="indicator_unselected_color_petner">#D2B3E2</color>
 </resources>
 

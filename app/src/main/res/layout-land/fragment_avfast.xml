@@ -83,7 +83,7 @@
                 app:layout_constraintTop_toBottomOf="@id/numberOfPeopleOnlineText" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvGraphic"
+                android:id="@+id/rvGraphicAvfast"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
