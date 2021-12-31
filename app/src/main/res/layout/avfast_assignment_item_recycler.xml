@@ -13,7 +13,8 @@
         android:layout_marginTop="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_notice_orange" />
+        app:srcCompat="@drawable/ic_notice_orange"
+        android:contentDescription="@string/todo"/>
 
     <TextView
         android:id="@+id/txtAssignmentInfo"
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="Bursa ilinde yeni bir görev."
+        android:text="@string/bursa_ilinde_yeni_bir_g_rev"
         android:textColor="@color/text_label_color_black_between_gray"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/imgAssignment"

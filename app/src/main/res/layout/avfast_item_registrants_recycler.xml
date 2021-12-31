@@ -14,7 +14,8 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_person_orange" />
+        app:srcCompat="@drawable/ic_person_orange"
+        android:contentDescription="@string/todo"/>
 
     <TextView
         android:id="@+id/txtRegistrantsInfo"

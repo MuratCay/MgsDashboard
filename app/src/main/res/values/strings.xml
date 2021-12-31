@@ -19,6 +19,9 @@
     <string name="_1015">1015</string>
     <string name="sah_plend_rme_lani_sayisi">SAHİPLENDİRME İLANI SAYISI</string>
     <string name="_27">27</string>
+    <string name="todo">TODO</string>
+    <string name="bursa_ilinde_yeni_bir_g_rev">Bursa ilinde yeni bir görev.</string>
+    <string name="bir_kullan_c_giri_yapt">Bir kullanıcı giriş yaptı.</string>
 
 
 </resources>
