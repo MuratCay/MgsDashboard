@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/imgAssignment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_notice_orange" />
+
+    <TextView
+        android:id="@+id/txtAssignmentInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="Bursa ilinde yeni bir görev."
+        android:textColor="@color/text_label_color_black_between_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgAssignment"
+        app:layout_constraintStart_toEndOf="@id/imgAssignment"
+        app:layout_constraintTop_toTopOf="@id/imgAssignment" />
+
+    <TextView
+        android:id="@+id/txtDateOfAssignment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="18dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/dateOfTwoDays"
+        android:textColor="@color/text_label_color_black_between_gray"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtAssignmentInfo"
+        tools:ignore="SmallSp" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/line_border_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintTop_toBottomOf="@id/txtDateOfAssignment" />
+</androidx.constraintlayout.widget.ConstraintLayout>

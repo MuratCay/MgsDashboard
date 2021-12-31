@@ -40,13 +40,12 @@ class AvfastGraphicAdapter(
         val barEntry = arrayListOf<BarEntry>()
 
         barEntry.add(BarEntry(1f, 100f))
-        barEntry.add(BarEntry(2f, 100f))
-        barEntry.add(BarEntry(3f, 200f))
-        barEntry.add(BarEntry(4f, 300f))
-        barEntry.add(BarEntry(5f, 300f))
+        barEntry.add(BarEntry(2f, 200f))
+        barEntry.add(BarEntry(3f, 300f))
+        barEntry.add(BarEntry(4f, 400f))
+        barEntry.add(BarEntry(5f, 500f))
 
         val barDataSet = BarDataSet(barEntry, "")
-        barDataSet.valueTextSize = 15f
         barDataSet.color = ContextCompat.getColor(
             context,
             R.color.graphic_orange
@@ -54,8 +53,9 @@ class AvfastGraphicAdapter(
 
         val barData = BarData(barDataSet)
         barData.setDrawValues(false)
+        barData.barWidth = 0.75f
         binding.barChart.apply {
-            animateY(1500)
+            animateY(1750)
             setFitBars(true)
             data = barData
             description.isEnabled = false
@@ -66,15 +66,17 @@ class AvfastGraphicAdapter(
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.isEnabled = true
             xAxis.textSize = 14f
-            xAxis.axisLineWidth = 2f
+            xAxis.axisLineWidth = 1f
             xAxis.axisLineColor = ContextCompat.getColor(context, R.color.white)
             xAxis.gridColor = ContextCompat.getColor(context, R.color.graphic_background_color)
             axisRight.isEnabled = false
             axisLeft.textColor = ContextCompat.getColor(context, R.color.white)
             axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.white)
-            axisLeft.axisLineWidth = 2f
+            axisLeft.axisLineWidth = 1f
             axisLeft.isEnabled = true
+            axisLeft.textSize = 14f
             axisLeft.setDrawGridLines(false)
+            invalidate()
         }
     }
 
