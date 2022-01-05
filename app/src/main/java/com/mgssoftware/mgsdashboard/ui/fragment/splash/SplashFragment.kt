@@ -1,4 +1,4 @@
-package com.mgssoftware.mgsdashboard.ui.fragment
+package com.mgssoftware.mgsdashboard.ui.fragment.splash
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -13,7 +13,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val counter = object : CountDownTimer(3000, 1000) {
+        val counter = object : CountDownTimer(1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 Log.e("CountDownTimer", "seconds remaining: ${millisUntilFinished / 1000}")
 

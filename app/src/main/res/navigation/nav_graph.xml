@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.mgssoftware.mgsdashboard.ui.fragment.SplashFragment"
+        android:name="com.mgssoftware.mgsdashboard.ui.fragment.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.mgssoftware.mgsdashboard.ui.fragment.MainFragment"
+        android:name="com.mgssoftware.mgsdashboard.ui.fragment.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
 </navigation>

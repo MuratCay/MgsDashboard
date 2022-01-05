@@ -17,7 +17,7 @@
         android:contentDescription="@string/todo"/>
 
     <TextView
-        android:id="@+id/txtRegistrantsInfo"
+        android:id="@+id/txtRegistrantsName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -40,7 +40,7 @@
         android:textColor="@color/text_label_color_black_between_gray"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtRegistrantsInfo"
+        app:layout_constraintTop_toBottomOf="@id/txtRegistrantsName"
         tools:ignore="SmallSp" />
 
     <View

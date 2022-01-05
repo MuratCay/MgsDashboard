@@ -1,25 +1,25 @@
-package com.mgssoftware.mgsdashboard.adapters
+package com.mgssoftware.mgsdashboard.adapters.avfastadapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mgssoftware.mgsdashboard.R
+import com.mgssoftware.mgsdashboard.data.avfastmodel.RegisterUser
 import com.mgssoftware.mgsdashboard.databinding.AvfastItemRegistrantsRecyclerBinding
-import com.mgssoftware.mgsdashboard.model.AvfastRegistrants
 
-class AvfastRegistrantsAdapter(private val registrantsList: ArrayList<AvfastRegistrants>) :
+class AvfastRegistrantsAdapter(private val registrantsList: List<RegisterUser>) :
     RecyclerView.Adapter<AvfastRegistrantsAdapter.RegistrantsViewHolder>() {
 
     private lateinit var binding: AvfastItemRegistrantsRecyclerBinding
 
     inner class RegistrantsViewHolder(itemBinding: AvfastItemRegistrantsRecyclerBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(data: AvfastRegistrants) {
+        fun bind(data: RegisterUser) {
             binding.imgRegistrants.setImageResource(R.drawable.ic_person_orange)
-            binding.txtRegistrantsInfo.text = data.personDescription
-            binding.txtDateOfRegistrants.text = data.dateOfRegistration
-
+            binding.txtRegistrantsName.text = data.name
+            binding.txtRegistrantsSurname.text = data.surname
+            binding.txtDateOfRegistrants.text = data.createdAt
         }
     }
 
@@ -38,7 +38,7 @@ class AvfastRegistrantsAdapter(private val registrantsList: ArrayList<AvfastRegi
 
         if (position == registrantsList.size - 1) {
             binding.line.visibility = View.GONE
-        }else {
+        } else {
             View.VISIBLE
         }
     }

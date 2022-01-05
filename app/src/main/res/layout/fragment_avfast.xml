@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/avfast_background_color"
-    tools:context=".ui.fragment.AvfastFragment">
+    tools:context=".ui.fragment.avfast.AvfastFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
             android:background="@drawable/avfast_text_label_background"
             android:fontFamily="@font/montserrat_semi_bold"
             android:gravity="center"
-            android:text="@string/_100"
+            tools:text="@string/_100"
             android:textAlignment="center"
             android:textColor="@color/text_label_color_black_between_gray"
             android:textSize="40sp"
@@ -73,7 +73,7 @@
             android:background="@drawable/avfast_text_label_background"
             android:fontFamily="@font/montserrat_semi_bold"
             android:gravity="center"
-            android:text="@string/_7"
+            tools:text="@string/_7"
             android:textAlignment="center"
             android:textColor="@color/text_label_color_black_between_gray"
             android:textSize="40sp"
@@ -172,7 +172,7 @@
             app:layout_constraintStart_toStartOf="@id/viewRvRegistrants"
             app:layout_constraintTop_toBottomOf="@id/viewRvRegistrants" />
 
-        <LinearLayout
+        <HorizontalScrollView
             android:id="@+id/viewRvAssignment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -190,11 +190,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAssignment"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="15dp" />
 
-        </LinearLayout>
+        </HorizontalScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

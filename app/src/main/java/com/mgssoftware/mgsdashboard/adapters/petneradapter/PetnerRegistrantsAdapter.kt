@@ -1,4 +1,4 @@
-package com.mgssoftware.mgsdashboard.adapters
+package com.mgssoftware.mgsdashboard.adapters.petneradapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +17,6 @@ class PetnerRegistrantsAdapter(private val registrantsList: ArrayList<PetnerRegi
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(data: PetnerRegistrants) {
             binding.imgRegistrants.setImageResource(R.drawable.ic_person_purple)
-            binding.txtRegistrantsInfo.text = data.personDescription
             binding.txtDateOfRegistrants.text = data.dateOfRegistration
         }
     }

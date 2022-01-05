@@ -1,4 +1,4 @@
-package com.mgssoftware.mgsdashboard.ui.fragment
+package com.mgssoftware.mgsdashboard.ui.fragment.main
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mgssoftware.mgsdashboard.R
-import com.mgssoftware.mgsdashboard.adapters.FragmentAdapter
 import com.mgssoftware.mgsdashboard.base.BaseFragment
 import com.mgssoftware.mgsdashboard.databinding.FragmentMainBinding
 

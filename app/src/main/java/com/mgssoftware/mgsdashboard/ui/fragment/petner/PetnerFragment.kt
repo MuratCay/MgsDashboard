@@ -1,20 +1,21 @@
-package com.mgssoftware.mgsdashboard.ui.fragment
+package com.mgssoftware.mgsdashboard.ui.fragment.petner
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mgssoftware.mgsdashboard.R
-import com.mgssoftware.mgsdashboard.adapters.AvfastAssignmentAdapter
-import com.mgssoftware.mgsdashboard.adapters.PetnerAssignmentAdapter
-import com.mgssoftware.mgsdashboard.adapters.PetnerGraphicAdapter
-import com.mgssoftware.mgsdashboard.adapters.PetnerRegistrantsAdapter
+import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerGraphicAdapter
+import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerAssignmentAdapter
+import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerRegistrantsAdapter
 import com.mgssoftware.mgsdashboard.base.BaseFragment
 import com.mgssoftware.mgsdashboard.databinding.FragmentPetnerBinding
-import com.mgssoftware.mgsdashboard.model.AvfastAssignment
 import com.mgssoftware.mgsdashboard.model.PetnerAssignment
 import com.mgssoftware.mgsdashboard.model.PetnerRegistrants
 
 class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding::inflate) {
+
+    private val viewModel: PetnerFragmentViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,9 +35,13 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
             )
         assignmentList.add(assignment1)
 
-        repeat(9) {
+        repeat(6) {
             val assignment2 =
-                PetnerAssignment(R.drawable.ic_notice_orange, "Bir kullanıcı giriş yaptı.", "3 gün önce")
+                PetnerAssignment(
+                    R.drawable.ic_notice_orange,
+                    "Bir kullanıcı giriş yaptı.",
+                    "3 gün önce"
+                )
             assignmentList.add(assignment2)
         }
         binding.rvAssignment.layoutManager =
@@ -47,7 +52,7 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
 
     private fun configureRegistrantsRecyclerView() {
         val registrantsList = arrayListOf<PetnerRegistrants>()
-        repeat(10) {
+        repeat(7) {
             val registrants =
                 PetnerRegistrants(
                     R.drawable.ic_person_purple,

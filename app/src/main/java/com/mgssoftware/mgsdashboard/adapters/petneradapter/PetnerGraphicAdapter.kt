@@ -1,4 +1,4 @@
-package com.mgssoftware.mgsdashboard.adapters
+package com.mgssoftware.mgsdashboard.adapters.petneradapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
