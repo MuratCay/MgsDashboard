@@ -8,6 +8,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.mgssoftware.mgsdashboard.R
+import com.mgssoftware.mgsdashboard.data.avfastmodel.MonthlyTotalUsersChart
 import com.mgssoftware.mgsdashboard.databinding.ItemAvfastGraphicBinding
 
 class AvfastGraphicAdapter(
@@ -15,7 +16,6 @@ class AvfastGraphicAdapter(
     private val graphicsDescription: List<String>,
     private val barBottomValue: List<String>,
     private val listBarData: ArrayList<BarData>
-//    val barEntryList: List<Pair<Float,Float>>
 ) : RecyclerView.Adapter<AvfastGraphicAdapter.AvfastViewHolder>() {
 
     private lateinit var binding: ItemAvfastGraphicBinding
@@ -33,11 +33,11 @@ class AvfastGraphicAdapter(
         val currentGraphicsTitle = graphicsTitle[position]
         val currentGraphicsDescription = graphicsDescription[position]
         holder.itemBinding.graphicTitleText.text = currentGraphicsTitle
-        holder.itemBinding.graphicDescription.text = currentGraphicsDescription
+        holder.itemBinding.graphicDescription.text = currentGraphicsDescription.toString()
         val context = holder.itemView.context
 
         binding.barChart.apply {
-            animateY(1750)
+            animateY(1500)
             setFitBars(true)
             description.isEnabled = false
             legend.formSize = 0f
@@ -57,15 +57,13 @@ class AvfastGraphicAdapter(
             axisLeft.isEnabled = true
             axisLeft.textSize = 14f
             axisLeft.setDrawGridLines(false)
-            setTouchEnabled(false)
+            setTouchEnabled(true)
+            xAxis.isGranularityEnabled = true
+            isDragEnabled = true
+            xAxis.axisMinimum = 0.65f
             data = listBarData[position]
             invalidate()
         }
-//        val yAxis = binding.barChart.axisLeft
-//        binding.barChart.axisRight.isEnabled = false
-//        yAxis.enableGridDashedLine(10f, 10f, -10f)
-//        yAxis.setAxisMaximum(200f)
-//        yAxis.setAxisMinimum(-50f)
     }
 
     override fun getItemCount() = graphicsTitle.size

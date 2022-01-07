@@ -8,18 +8,18 @@ import com.mgssoftware.mgsdashboard.R
 import com.mgssoftware.mgsdashboard.data.avfastmodel.RegisterUser
 import com.mgssoftware.mgsdashboard.databinding.AvfastItemRegistrantsRecyclerBinding
 
-class AvfastRegistrantsAdapter(private val registrantsList: List<RegisterUser>) :
+class AvfastRegistrantsAdapter(private val registrantsList: List<RegisterUser?>?) :
     RecyclerView.Adapter<AvfastRegistrantsAdapter.RegistrantsViewHolder>() {
 
     private lateinit var binding: AvfastItemRegistrantsRecyclerBinding
 
     inner class RegistrantsViewHolder(itemBinding: AvfastItemRegistrantsRecyclerBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(data: RegisterUser) {
+        fun bind(data: RegisterUser?) {
             binding.imgRegistrants.setImageResource(R.drawable.ic_person_orange)
-            binding.txtRegistrantsName.text = data.name
-            binding.txtRegistrantsSurname.text = data.surname
-            binding.txtDateOfRegistrants.text = data.createdAt
+            binding.txtRegistrantsName.text = data?.name ?: "Null"
+            binding.txtRegistrantsSurname.text = data?.surname ?: "Null"
+            binding.txtDateOfRegistrants.text = data?.createdAt ?: "Null"
         }
     }
 
@@ -34,14 +34,14 @@ class AvfastRegistrantsAdapter(private val registrantsList: List<RegisterUser>) 
     }
 
     override fun onBindViewHolder(holder: RegistrantsViewHolder, position: Int) {
-        holder.bind(registrantsList[position])
+        holder.bind(registrantsList?.get(position))
 
-        if (position == registrantsList.size - 1) {
+        if (position == (registrantsList?.size ?: 0) - 1) {
             binding.line.visibility = View.GONE
         } else {
             View.VISIBLE
         }
     }
 
-    override fun getItemCount() = registrantsList.size
+    override fun getItemCount() = registrantsList!!.size
 }

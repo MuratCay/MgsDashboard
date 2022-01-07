@@ -2,19 +2,27 @@ package com.mgssoftware.mgsdashboard.ui.fragment.petner
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mgssoftware.mgsdashboard.R
-import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerGraphicAdapter
 import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerAssignmentAdapter
+import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerGraphicAdapter
 import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerRegistrantsAdapter
 import com.mgssoftware.mgsdashboard.base.BaseFragment
+import com.mgssoftware.mgsdashboard.data.petnermodel.Log
+import com.mgssoftware.mgsdashboard.data.petnermodel.PetnerAPI
+import com.mgssoftware.mgsdashboard.data.petnermodel.RegisterUser
+import com.mgssoftware.mgsdashboard.data.remote.PetnerRetrofitClient
+import com.mgssoftware.mgsdashboard.data.remote.RetrofitAPI
 import com.mgssoftware.mgsdashboard.databinding.FragmentPetnerBinding
-import com.mgssoftware.mgsdashboard.model.PetnerAssignment
-import com.mgssoftware.mgsdashboard.model.PetnerRegistrants
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding::inflate) {
 
+    private val retrofit = PetnerRetrofitClient.getPetnerRetrofitClient()
+    private val apiService = retrofit.create(RetrofitAPI::class.java)
     private val viewModel: PetnerFragmentViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,48 +31,44 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
         addIndicator()
         configureRegistrantsRecyclerView()
         configureAssignmentRecyclerView()
+
+        val callPetner = apiService.getPetnerUser()
+        callPetner.enqueue(object : Callback<PetnerAPI> {
+            override fun onResponse(call: Call<PetnerAPI>, response: Response<PetnerAPI>) {
+                val body = response.body()!!
+                val dataLog: List<Log> = body.logs
+                val dataRegistrants: List<RegisterUser> = body.registerUsers
+
+                if (response.isSuccessful) {
+                    binding.numberOfUsers.text = body.usersCount.toString()
+                    binding.currentNumberOfPets.text = body.petsCount.toString()
+                    binding.currentNumberOfAdoptions.text = body.adoptionPetsCount.toString()
+                    binding.rvAssignment.adapter = PetnerAssignmentAdapter(dataLog)
+                    binding.rvRegistrants.adapter = PetnerRegistrantsAdapter(dataRegistrants)
+                }
+            }
+
+            override fun onFailure(call: Call<PetnerAPI>, t: Throwable) {
+                Toast.makeText(requireContext(), "exception", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun configureAssignmentRecyclerView() {
-        val assignmentList = arrayListOf<PetnerAssignment>()
-        val assignment1 =
-            PetnerAssignment(
-                R.drawable.ic_notice_purple,
-                "Bursa ilinde yeni bir görev",
-                "2 gün önce"
-            )
-        assignmentList.add(assignment1)
-
-        repeat(6) {
-            val assignment2 =
-                PetnerAssignment(
-                    R.drawable.ic_notice_orange,
-                    "Bir kullanıcı giriş yaptı.",
-                    "3 gün önce"
-                )
-            assignmentList.add(assignment2)
+        binding.rvAssignment.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            setHasFixedSize(true)
         }
-        binding.rvAssignment.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        val adapter = PetnerAssignmentAdapter(assignmentList)
-        binding.rvAssignment.adapter = adapter
+
     }
 
     private fun configureRegistrantsRecyclerView() {
-        val registrantsList = arrayListOf<PetnerRegistrants>()
-        repeat(7) {
-            val registrants =
-                PetnerRegistrants(
-                    R.drawable.ic_person_purple,
-                    "E*** A*** kayıt oldu.",
-                    "2 gün önce"
-                )
-            registrantsList.add(registrants)
+        binding.rvRegistrants.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            setHasFixedSize(true)
         }
-        binding.rvRegistrants.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        val adapter = PetnerRegistrantsAdapter(registrantsList)
-        binding.rvRegistrants.adapter = adapter
     }
 
     private fun configureGraphicRecyclerView() {

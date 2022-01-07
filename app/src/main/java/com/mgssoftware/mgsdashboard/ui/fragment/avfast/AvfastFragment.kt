@@ -2,7 +2,6 @@ package com.mgssoftware.mgsdashboard.ui.fragment.avfast
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.data.BarData
@@ -13,11 +12,9 @@ import com.mgssoftware.mgsdashboard.adapters.avfastadapter.AvfastAssignmentAdapt
 import com.mgssoftware.mgsdashboard.adapters.avfastadapter.AvfastGraphicAdapter
 import com.mgssoftware.mgsdashboard.adapters.avfastadapter.AvfastRegistrantsAdapter
 import com.mgssoftware.mgsdashboard.base.BaseFragment
-import com.mgssoftware.mgsdashboard.data.avfastmodel.AvfastAPI
-import com.mgssoftware.mgsdashboard.data.avfastmodel.Log
-import com.mgssoftware.mgsdashboard.data.avfastmodel.RegisterUser
+import com.mgssoftware.mgsdashboard.data.avfastmodel.*
+import com.mgssoftware.mgsdashboard.data.remote.AvfastRetrofitClient
 import com.mgssoftware.mgsdashboard.data.remote.RetrofitAPI
-import com.mgssoftware.mgsdashboard.data.remote.RetrofitClient
 import com.mgssoftware.mgsdashboard.databinding.FragmentAvfastBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,31 +25,70 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
 
 //    private val viewModel: AvfastFragmentViewModel by viewModels()
 
-    private val retrofit = RetrofitClient.getRetrofitClient()
+    private val retrofit = AvfastRetrofitClient.getAvfastRetrofitClient()
     private val apiService = retrofit.create(RetrofitAPI::class.java)
+
+    private var dataMonthlyTotalUsersChart: List<MonthlyTotalUsersChart?>? = null
+    private var dataDailyLoggedInUsersChart: List<DailyLoggedInUsersChart?>? = null
+    private var dataDailyLoggedInUsersCount: Int? = null
+
+    private var dataMonthlyTotalUsersCount: Int? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        configureGraphicRecyclerView()
+        addIndicator()
+        configureRegistrantsRecyclerView()
+        configureAssignmentRecyclerView()
+
         val callAvfast = apiService.getAvfastUser()
         callAvfast.enqueue(object : Callback<AvfastAPI> {
             override fun onResponse(call: Call<AvfastAPI>, response: Response<AvfastAPI>) {
+
                 val body = response.body()!!
-                val dataLog: List<Log> = body.logs
-                val dataRegistrants: List<RegisterUser> = body.registerUsers
+
+                val dataLog: List<Log?>? = body.logs
+                val dataRegistrants: List<RegisterUser?>? = body.registerUsers
+                dataMonthlyTotalUsersChart = body.monthlyTotalUsersChart
+
+                dataDailyLoggedInUsersCount = body.dailyLoggedInUsersCount
+                dataDailyLoggedInUsersChart = body.dailyLoggedInUsersChart
+
+                dataMonthlyTotalUsersCount = body.monthlyTotalUsersCount
+
+                val dataWeeklyTasksCount: Int? = body.weeklyTasksCount
+                val dataWeeklyTasksChart: List<WeeklyTasksChart?>? = body.weeklyTasksChart
+
+
+                val dataWeeklyAppliedTasksCount: Int? = body.weeklyAppliedTasksCount
+                val dataWeeklyAppliedTasksChart: List<WeeklyAppliedTasksChart?>? =
+                    body.weeklyAppliedTasksChart
+
+                val dataWeeklyEvaluatedTasksCount: Int? = body.weeklyEvaluatedTasksCount
+                val dataWeeklyEvaluatedTasksChart: List<WeeklyEvaluatedTasksChart?>? =
+                    body.weeklyEvaluatedTasksChart
+
+                val dataWeeklyDoneTasksCount: Int? = body.weeklyDoneTasksCount
+                val dataWeeklyDoneTasksChart: List<WeeklyDoneTasksChart?>? =
+                    body.weeklyDoneTasksChart
+
+
                 if (response.isSuccessful) {
                     binding.numberOfUsers.text = body.usersCount.toString()
                     binding.numberOfPeopleOnline.text = body.onlineUsersCount.toString()
                     binding.rvAssignment!!.adapter = AvfastAssignmentAdapter(dataLog)
                     binding.rvRegistrants!!.adapter = AvfastRegistrantsAdapter(dataRegistrants)
+                    updateAvfastRecycler()
                 }
             }
 
             override fun onFailure(call: Call<AvfastAPI>, t: Throwable) {
-                Toast.makeText(requireContext(), "exception", Toast.LENGTH_SHORT).show()
+                android.util.Log.e("Error", t.message.toString())
             }
         })
+
         /**
         CoroutineScope(Dispatchers.IO).launch {
         viewModel.getUserCountData()
@@ -65,10 +101,56 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
         binding.numberOfUsers.text = user.toString()
         })
          */
-        configureGraphicRecyclerView()
-        addIndicator()
-        configureRegistrantsRecyclerView()
-        configureAssignmentRecyclerView()
+
+    }
+
+    private fun updateAvfastRecycler() {
+        val list = listOf(
+            "BU AY KAYITLI KULLANICI", "Günlük Giriş", "Yeni Task",
+            "Başvurma", "Tamamlanan", "Değerlendirme"
+        )
+        val descriptionList = arrayListOf<String>()
+        val barBottomValue = arrayListOf<String>()
+
+        val barEntry = arrayListOf<BarEntry>()
+        for (i in dataMonthlyTotalUsersChart!!.indices) {
+            barEntry.add(
+                BarEntry(
+                    i.toFloat(),
+                    dataMonthlyTotalUsersChart!![i]!!.usersCount!!.toFloat()
+                )
+            )
+            barBottomValue.add(dataMonthlyTotalUsersChart!![0]!!.createdAt!!.toString())
+            descriptionList.add(dataMonthlyTotalUsersCount.toString())
+        }
+
+        /**
+        for (i in dataDailyLoggedInUsersChart!!.indices){
+        barEntry.add(BarEntry(i.toFloat(),dataDailyLoggedInUsersChart!![i]!!.usersCount!!.toFloat()))
+        barBottomValue.add(dataDailyLoggedInUsersChart!![i]!!.day!!.toString())
+        }
+         */
+
+        val barDataSet = BarDataSet(barEntry, "")
+        barDataSet.color = ContextCompat.getColor(
+            requireContext(),
+            R.color.graphic_orange
+        )
+
+        val barData = BarData(barDataSet)
+        barData.setDrawValues(false)
+        barData.barWidth = 0.75f
+
+        val valueList = arrayListOf<BarData>()
+        repeat(6) {
+            valueList.add(barData)
+        }
+
+        val adapter = AvfastGraphicAdapter(list, descriptionList, barBottomValue, valueList)
+        binding.rvGraphicAvfast.setHasFixedSize(true)
+        binding.rvGraphicAvfast.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvGraphicAvfast.adapter = adapter
     }
 
     private fun configureAssignmentRecyclerView() {
@@ -103,41 +185,22 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
         barEntry.add(BarEntry(4f, 400f))
         barEntry.add(BarEntry(5f, 400f))
 
-        val barEntry2 = arrayListOf<BarEntry>()
-
-        barEntry2.add(BarEntry(1f, 300f))
-        barEntry2.add(BarEntry(2f, 250f))
-        barEntry2.add(BarEntry(3f, 200f))
-        barEntry2.add(BarEntry(4f, 350f))
-        barEntry2.add(BarEntry(5f, 170f))
-        barEntry2.add(BarEntry(6f, 100f))
-
 
         val barDataSet = BarDataSet(barEntry, "")
-        val barDataSet2 = BarDataSet(barEntry2, "")
         barDataSet.color = ContextCompat.getColor(
-            requireContext(),
-            R.color.graphic_orange
-        )
-        barDataSet2.color = ContextCompat.getColor(
             requireContext(),
             R.color.graphic_orange
         )
 
         val barData = BarData(barDataSet)
-        val barData2 = BarData(barDataSet2)
         barData.setDrawValues(false)
-        barData2.setDrawValues(false)
         barData.barWidth = 0.75f
-        barData2.barWidth = 0.75f
 
         val valueList = arrayListOf<BarData>()
-        repeat(3) {
+        repeat(6) {
             valueList.add(barData)
         }
-        repeat(3) {
-            valueList.add(barData2)
-        }
+
         val adapter = AvfastGraphicAdapter(list, descriptionList, barBottomValue, valueList)
         binding.rvGraphicAvfast.setHasFixedSize(true)
         binding.rvGraphicAvfast.layoutManager =

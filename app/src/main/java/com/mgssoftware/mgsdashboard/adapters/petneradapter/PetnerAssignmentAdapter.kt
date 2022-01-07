@@ -5,20 +5,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mgssoftware.mgsdashboard.R
+import com.mgssoftware.mgsdashboard.data.petnermodel.Log
 import com.mgssoftware.mgsdashboard.databinding.PetnerAssignmentItemRecyclerBinding
-import com.mgssoftware.mgsdashboard.model.PetnerAssignment
 
-class PetnerAssignmentAdapter(private val assignmentList: ArrayList<PetnerAssignment>) :
+class PetnerAssignmentAdapter(private val assignmentList: List<Log>) :
     RecyclerView.Adapter<PetnerAssignmentAdapter.PetnerAssignmentViewHolder>() {
 
     private lateinit var binding: PetnerAssignmentItemRecyclerBinding
 
     inner class PetnerAssignmentViewHolder(itemBinding: PetnerAssignmentItemRecyclerBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(data: PetnerAssignment) {
+        fun bind(data: Log) {
             binding.imgPetner.setImageResource(R.drawable.ic_notice_purple)
-            binding.txtPetnerInfo.text = data.assignmentDescription
-            binding.txtDateOfPetner.text = data.dateOfAssignment
+            binding.txtPetnerInfo.text = data.description
+            binding.txtDateOfPetner.text = data.createdAt
         }
     }
 

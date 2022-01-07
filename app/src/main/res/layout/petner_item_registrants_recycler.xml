@@ -22,12 +22,37 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="@string/kayit_oldu"
+        android:text="@string/name"
         android:textColor="@color/text_label_color_black_between_gray"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/imgRegistrants"
         app:layout_constraintStart_toEndOf="@id/imgRegistrants"
         app:layout_constraintTop_toTopOf="@id/imgRegistrants" />
+    <TextView
+        android:id="@+id/txtRegistrantsSurName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/surname"
+        android:textColor="@color/text_label_color_black_between_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/txtRegistrantsName"
+        app:layout_constraintStart_toEndOf="@id/txtRegistrantsName"
+        app:layout_constraintTop_toTopOf="@id/txtRegistrantsName" />
+
+    <TextView
+        android:id="@+id/txtRegistrantsInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/kay_t_oldu"
+        android:textColor="@color/text_label_color_black_between_gray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/txtRegistrantsSurName"
+        app:layout_constraintStart_toEndOf="@id/txtRegistrantsSurName"
+        app:layout_constraintTop_toTopOf="@id/txtRegistrantsSurName" />
 
     <TextView
         android:id="@+id/txtDateOfRegistrants"

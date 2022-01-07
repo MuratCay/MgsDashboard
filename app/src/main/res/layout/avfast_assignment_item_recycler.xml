@@ -21,11 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:maxWidth="260dp"
         android:fontFamily="@font/montserrat_regular"
         android:text="@string/bursa_ilinde_yeni_bir_g_rev"
         android:textColor="@color/text_label_color_black_between_gray"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/imgAssignment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/imgAssignment"
         app:layout_constraintTop_toTopOf="@id/imgAssignment"
         tools:ignore="RtlSymmetry" />
@@ -34,15 +37,14 @@
         android:id="@+id/txtDateOfAssignment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="18dp"
         android:fontFamily="@font/montserrat_regular"
         android:text="@string/dateOfTwoDays"
         android:textColor="@color/text_label_color_black_between_gray"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.81"
-        app:layout_constraintStart_toEndOf="@+id/imgAssignment"
-        app:layout_constraintTop_toBottomOf="@+id/imgAssignment"
+        app:layout_constraintTop_toBottomOf="@+id/txtAssignmentInfo"
         tools:ignore="SmallSp" />
 
     <View

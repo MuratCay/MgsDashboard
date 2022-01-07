@@ -5,19 +5,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mgssoftware.mgsdashboard.R
+import com.mgssoftware.mgsdashboard.data.petnermodel.RegisterUser
 import com.mgssoftware.mgsdashboard.databinding.PetnerItemRegistrantsRecyclerBinding
-import com.mgssoftware.mgsdashboard.model.PetnerRegistrants
 
-class PetnerRegistrantsAdapter(private val registrantsList: ArrayList<PetnerRegistrants>) :
+class PetnerRegistrantsAdapter(private val registrantsList: List<RegisterUser>) :
     RecyclerView.Adapter<PetnerRegistrantsAdapter.PetnerRegistrantsViewHolder>() {
 
     private lateinit var binding: PetnerItemRegistrantsRecyclerBinding
 
     inner class PetnerRegistrantsViewHolder(itemBinding: PetnerItemRegistrantsRecyclerBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(data: PetnerRegistrants) {
+        fun bind(data: RegisterUser) {
             binding.imgRegistrants.setImageResource(R.drawable.ic_person_purple)
-            binding.txtDateOfRegistrants.text = data.dateOfRegistration
+            binding.txtDateOfRegistrants.text = data.createdAt
+            binding.txtRegistrantsName.text = data.name
+            binding.txtRegistrantsSurName.text = data.surname
         }
     }
 
@@ -35,7 +37,7 @@ class PetnerRegistrantsAdapter(private val registrantsList: ArrayList<PetnerRegi
         holder.bind(registrantsList[position])
         if (position == registrantsList.size - 1) {
             binding.line.visibility = View.GONE
-        }else {
+        } else {
             View.VISIBLE
         }
     }

@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class MonthlyTotalUsersChart(
     @SerializedName("created_at")
-    val createdAt: String,
+    val createdAt: String? = null,
     @SerializedName("month")
-    val month: String,
+    val month: String? = null,
     @SerializedName("users_count")
-    val usersCount: Int
+    val usersCount: Int? = null
 )

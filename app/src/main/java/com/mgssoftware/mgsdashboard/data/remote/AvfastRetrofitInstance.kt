@@ -1,18 +1,18 @@
 package com.mgssoftware.mgsdashboard.data.remote
 
-import com.mgssoftware.mgsdashboard.utils.Constants.BASE_URL
+import com.mgssoftware.mgsdashboard.utils.Constants.AVFAST_BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-abstract class RetrofitClient {
+abstract class AvfastRetrofitClient {
     companion object {
         @Volatile
         private var INSTANCE: Retrofit? = null
 
-        fun getRetrofitClient(): Retrofit {
+        fun getAvfastRetrofitClient(): Retrofit {
             return INSTANCE ?: synchronized(this) {
                 val instance = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(AVFAST_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                 INSTANCE = instance

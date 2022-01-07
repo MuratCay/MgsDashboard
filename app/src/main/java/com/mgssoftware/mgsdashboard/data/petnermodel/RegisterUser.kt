@@ -1,13 +1,13 @@
-package com.mgssoftware.mgsdashboard.data.avfastmodel
+package com.mgssoftware.mgsdashboard.data.petnermodel
 
 
 import com.google.gson.annotations.SerializedName
 
 data class RegisterUser(
     @SerializedName("created_at")
-    val createdAt: String? = null,
+    val createdAt: String,
     @SerializedName("name")
-    val name: String? = null,
+    val name: String,
     @SerializedName("surname")
-    val surname: String? = null
+    val surname: String
 )
