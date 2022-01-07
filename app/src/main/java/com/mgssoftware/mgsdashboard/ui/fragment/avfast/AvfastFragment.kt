@@ -121,7 +121,7 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
                 )
             )
             barBottomValue.add(dataMonthlyTotalUsersChart!![0]!!.createdAt!!.toString())
-            descriptionList.add(dataMonthlyTotalUsersCount.toString())
+//            descriptionList.add(dataMonthlyTotalUsersCount.toString())
         }
 
         /**
