@@ -2,67 +2,53 @@ package com.mgssoftware.mgsdashboard.adapters.avfastadapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.mgssoftware.mgsdashboard.R
-import com.mgssoftware.mgsdashboard.data.avfastmodel.MonthlyTotalUsersChart
+import com.mgssoftware.mgsdashboard.adapters.avfastadapter.avfastviewholder.AvfastGraphicViewHolder
+import com.mgssoftware.mgsdashboard.data.avfastmodel.AvfastAPI
 import com.mgssoftware.mgsdashboard.databinding.ItemAvfastGraphicBinding
+import com.mgssoftware.mgsdashboard.ui.fragment.avfast.AvfastEnum
 
 class AvfastGraphicAdapter(
     private val graphicsTitle: List<String>,
-    private val graphicsDescription: List<String>,
-    private val barBottomValue: List<String>,
-    private val listBarData: ArrayList<BarData>
-) : RecyclerView.Adapter<AvfastGraphicAdapter.AvfastViewHolder>() {
+//    private val graphicsDescription: List<String>,
+//    private val barBottomValue: List<String>,
+    private val apiData: AvfastAPI
+) : RecyclerView.Adapter<AvfastGraphicViewHolder>() {
 
-    private lateinit var binding: ItemAvfastGraphicBinding
-
-    inner class AvfastViewHolder(val itemBinding: ItemAvfastGraphicBinding) :
-        RecyclerView.ViewHolder(itemBinding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvfastViewHolder {
-        binding =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvfastGraphicViewHolder {
+        val view =
             ItemAvfastGraphicBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AvfastViewHolder(binding)
+        return AvfastGraphicViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AvfastViewHolder, position: Int) {
-        val currentGraphicsTitle = graphicsTitle[position]
-        val currentGraphicsDescription = graphicsDescription[position]
-        holder.itemBinding.graphicTitleText.text = currentGraphicsTitle
-        holder.itemBinding.graphicDescription.text = currentGraphicsDescription.toString()
-        val context = holder.itemView.context
+    override fun onBindViewHolder(holder: AvfastGraphicViewHolder, position: Int) {
+        holder.setAvfastGraphTitle(graphicsTitle[position])
 
-        binding.barChart.apply {
-            animateY(1500)
-            setFitBars(true)
-            description.isEnabled = false
-            legend.formSize = 0f
-            legend.textSize = 16f
-            xAxis.valueFormatter = IndexAxisValueFormatter(barBottomValue)
-            xAxis.textColor = ContextCompat.getColor(context, R.color.white)
-            xAxis.position = XAxis.XAxisPosition.BOTTOM
-            xAxis.isEnabled = true
-            xAxis.textSize = 14f
-            xAxis.axisLineWidth = 1f
-            xAxis.axisLineColor = ContextCompat.getColor(context, R.color.white)
-            xAxis.gridColor = ContextCompat.getColor(context, R.color.graphic_background_color)
-            axisRight.isEnabled = false
-            axisLeft.textColor = ContextCompat.getColor(context, R.color.white)
-            axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.white)
-            axisLeft.axisLineWidth = 1f
-            axisLeft.isEnabled = true
-            axisLeft.textSize = 14f
-            axisLeft.setDrawGridLines(false)
-            setTouchEnabled(true)
-            xAxis.isGranularityEnabled = true
-            isDragEnabled = true
-            xAxis.axisMinimum = 0.65f
-            data = listBarData[position]
-            invalidate()
+        when (position) {
+            AvfastEnum.KAYITLI_KULLANICI.ordinal -> holder.usersInLastFiveMonths(
+                apiData.monthlyTotalUsersChart,
+                apiData.monthlyTotalUsersCount
+            )
+            AvfastEnum.GUNLUK_GIRIS.ordinal -> holder.dailyLoginUser(
+                apiData.dailyLoggedInUsersChart,
+                apiData.dailyLoggedInUsersCount
+            )
+            AvfastEnum.YENI_TASK.ordinal -> holder.weeklyTasksChart(
+                apiData.weeklyTasksChart,
+                apiData.weeklyTasksCount
+            )
+            AvfastEnum.BASVURMA.ordinal -> holder.weeklyAppliedTasks(
+                apiData.weeklyAppliedTasksChart,
+                apiData.weeklyAppliedTasksCount
+            )
+            AvfastEnum.KABUL_EDILEN.ordinal -> holder.weeklyEvaluatedTasks(
+                apiData.weeklyEvaluatedTasksChart,
+                apiData.weeklyEvaluatedTasksCount
+            )
+            AvfastEnum.TAMAMLANAN.ordinal -> holder.weeklyDoneTasks(
+                apiData.weeklyDoneTasksChart,
+                apiData.weeklyAppliedTasksCount
+            )
         }
     }
 

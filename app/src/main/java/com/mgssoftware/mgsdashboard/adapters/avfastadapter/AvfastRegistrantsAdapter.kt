@@ -17,9 +17,9 @@ class AvfastRegistrantsAdapter(private val registrantsList: List<RegisterUser?>?
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(data: RegisterUser?) {
             binding.imgRegistrants.setImageResource(R.drawable.ic_person_orange)
-            binding.txtRegistrantsName.text = data?.name ?: "Null"
-            binding.txtRegistrantsSurname.text = data?.surname ?: "Null"
-            binding.txtDateOfRegistrants.text = data?.createdAt ?: "Null"
+            binding.txtRegistrantsName.text = data?.name ?: ""
+            binding.txtRegistrantsSurname.text = data?.surname ?: ""
+            binding.txtDateOfRegistrants.text = data?.createdAt ?: ""
         }
     }
 

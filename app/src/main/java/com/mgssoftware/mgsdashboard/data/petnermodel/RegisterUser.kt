@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class RegisterUser(
     @SerializedName("created_at")
-    val createdAt: String,
+    val createdAt: String? = null,
     @SerializedName("name")
-    val name: String,
+    val name: String? = null,
     @SerializedName("surname")
-    val surname: String
+    val surname: String? = null
 )

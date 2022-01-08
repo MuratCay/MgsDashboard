@@ -17,8 +17,8 @@ class AvfastAssignmentAdapter(private val assignmentList: List<Log?>?) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(data: Log?) {
             binding.imgAssignment.setImageResource(R.drawable.ic_notice_orange)
-            binding.txtAssignmentInfo.text = data?.description ?: "Null"
-            binding.txtDateOfAssignment.text = data?.createdAt ?: "Null"
+            binding.txtAssignmentInfo.text = data?.description ?: ""
+            binding.txtDateOfAssignment.text = data?.createdAt ?: ""
         }
     }
 

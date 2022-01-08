@@ -8,17 +8,17 @@ import com.mgssoftware.mgsdashboard.R
 import com.mgssoftware.mgsdashboard.data.petnermodel.Log
 import com.mgssoftware.mgsdashboard.databinding.PetnerAssignmentItemRecyclerBinding
 
-class PetnerAssignmentAdapter(private val assignmentList: List<Log>) :
+class PetnerAssignmentAdapter(private val assignmentList: List<Log?>?) :
     RecyclerView.Adapter<PetnerAssignmentAdapter.PetnerAssignmentViewHolder>() {
 
     private lateinit var binding: PetnerAssignmentItemRecyclerBinding
 
     inner class PetnerAssignmentViewHolder(itemBinding: PetnerAssignmentItemRecyclerBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        fun bind(data: Log) {
+        fun bind(data: Log?) {
             binding.imgPetner.setImageResource(R.drawable.ic_notice_purple)
-            binding.txtPetnerInfo.text = data.description
-            binding.txtDateOfPetner.text = data.createdAt
+            binding.txtPetnerInfo.text = data?.description ?: ""
+            binding.txtDateOfPetner.text = data?.createdAt ?: ""
         }
     }
 
@@ -33,13 +33,13 @@ class PetnerAssignmentAdapter(private val assignmentList: List<Log>) :
     }
 
     override fun onBindViewHolder(holder: PetnerAssignmentViewHolder, position: Int) {
-        holder.bind(assignmentList[position])
-        if (position == assignmentList.size - 1) {
+        holder.bind(assignmentList?.get(position))
+        if (position == (assignmentList?.size ?: 0) - 1) {
             binding.line.visibility = View.GONE
         } else {
             View.VISIBLE
         }
     }
 
-    override fun getItemCount() = assignmentList.size
+    override fun getItemCount() = assignmentList!!.size
 }
