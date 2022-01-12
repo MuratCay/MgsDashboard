@@ -35,7 +35,6 @@ class AvfastRegistrantsAdapter(private val registrantsList: List<RegisterUser?>?
 
     override fun onBindViewHolder(holder: RegistrantsViewHolder, position: Int) {
         holder.bind(registrantsList?.get(position))
-
         if (position == (registrantsList?.size ?: 0) - 1) {
             binding.line.visibility = View.GONE
         } else {

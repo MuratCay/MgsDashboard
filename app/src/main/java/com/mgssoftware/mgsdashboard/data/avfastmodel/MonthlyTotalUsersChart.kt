@@ -8,6 +8,6 @@ data class MonthlyTotalUsersChart(
     val createdAt: String? = null,
     @SerializedName("month")
     val month: String? = null,
-    @SerializedName("users_count")
+    @SerializedName("count")
     val usersCount: Int? = null
 )

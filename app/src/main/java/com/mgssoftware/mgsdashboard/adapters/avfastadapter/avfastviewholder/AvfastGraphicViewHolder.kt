@@ -11,6 +11,7 @@ import com.mgssoftware.mgsdashboard.R
 import com.mgssoftware.mgsdashboard.data.avfastmodel.*
 import com.mgssoftware.mgsdashboard.databinding.ItemAvfastGraphicBinding
 
+
 class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding) :
     RecyclerView.ViewHolder(itemBinding.root) {
 
@@ -23,7 +24,10 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
             val barBottomValue = arrayListOf<String>()
             for (i in usersMonthlyTotalUsersChart.indices) {
                 barEntry.add(
-                    BarEntry(i.toFloat(), usersMonthlyTotalUsersChart[i]?.usersCount!!.toFloat())
+                    BarEntry(
+                        i.toFloat(),
+                        usersMonthlyTotalUsersChart[i]?.usersCount!!.toFloat()
+                    )
                 )
                 barBottomValue.add(usersMonthlyTotalUsersChart[i]?.month.toString())
             }
@@ -34,9 +38,8 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
                 itemBinding.root.context,
                 R.color.graphic_orange
             )
+
             val barData = BarData(barDataSet)
-            barData.setDrawValues(false)
-            barData.barWidth = 0.75f
             setAllBarChart(barData, barBottomValue)
         }
     }
@@ -62,8 +65,6 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
                 R.color.graphic_orange
             )
             val barData = BarData(barDataSet)
-            barData.setDrawValues(false)
-            barData.barWidth = 0.75f
             setAllBarChart(barData, barBottomValue)
         }
     }
@@ -86,8 +87,6 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
             itemBinding.graphicDescription.text = weeklyTasksCount.toString()
 
             val barData = BarData(barDataSet)
-            barData.setDrawValues(false)
-            barData.barWidth = 0.75f
             setAllBarChart(barData, barBottomValue)
         }
     }
@@ -113,8 +112,6 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
             itemBinding.graphicDescription.text = weeklyAppliedTasksCount.toString()
 
             val barData = BarData(barDataSet)
-            barData.setDrawValues(false)
-            barData.barWidth = 0.75f
             setAllBarChart(barData, barBottomValue)
         }
     }
@@ -140,8 +137,6 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
             itemBinding.graphicDescription.text = weeklyEvaluatedTasksCount.toString()
 
             val barData = BarData(barDataSet)
-            barData.setDrawValues(false)
-            barData.barWidth = 0.75f
             setAllBarChart(barData, barBottomValue)
         }
     }
@@ -167,20 +162,20 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
             itemBinding.graphicDescription.text = weeklyAppliedTasksCount.toString()
 
             val barData = BarData(barDataSet)
-            barData.setDrawValues(false)
-            barData.barWidth = 0.65f
             setAllBarChart(barData, barBottomValue)
         }
     }
 
-
     private fun setAllBarChart(barEntryDataGet: BarData, barBottomValue: List<String>) {
+
         itemBinding.barChart.apply {
             animateY(1500)
             setFitBars(true)
+            data = barData
             description.isEnabled = false
             legend.formSize = 0f
             legend.textSize = 16f
+
             xAxis.valueFormatter = IndexAxisValueFormatter(barBottomValue)
             xAxis.textColor = ContextCompat.getColor(context, R.color.white)
             xAxis.position = XAxis.XAxisPosition.BOTTOM
@@ -189,19 +184,30 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
             xAxis.axisLineWidth = 1f
             xAxis.axisLineColor = ContextCompat.getColor(context, R.color.white)
             xAxis.gridColor = ContextCompat.getColor(context, R.color.graphic_background_color)
+            xAxis.isGranularityEnabled = true
+            xAxis.labelRotationAngle = 90f
+            xAxis.granularity = 1f
+
             axisRight.isEnabled = false
+
             axisLeft.textColor = ContextCompat.getColor(context, R.color.white)
             axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.white)
             axisLeft.axisLineWidth = 1f
             axisLeft.isEnabled = true
             axisLeft.textSize = 12f
             axisLeft.setDrawGridLines(false)
+            axisLeft.minWidth = 10f
+            axisLeft.axisMinimum = 0f
+            axisLeft.granularity = 1.0f
+            axisLeft.isGranularityEnabled = true
+
             setTouchEnabled(false)
-            xAxis.isGranularityEnabled = true
             isDragEnabled = true
-            xAxis.labelRotationAngle = 90f
-            xAxis.axisMinimum = 0.65f
+
             data = barEntryDataGet
+            data.barWidth = 0.7f
+            data.setDrawValues(false)
+
             invalidate()
         }
     }

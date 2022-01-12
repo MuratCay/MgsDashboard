@@ -41,14 +41,14 @@
             android:background="@drawable/petner_text_label_background"
             android:fontFamily="@font/montserrat_semi_bold"
             android:gravity="center"
-            tools:text="@string/_2028"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/totalNumberOfUsersText" />
+            app:layout_constraintTop_toBottomOf="@id/totalNumberOfUsersText"
+            tools:text="@string/_2028" />
 
         <TextView
             android:id="@+id/txtNumberOfPets"
@@ -73,14 +73,14 @@
             android:background="@drawable/petner_text_label_background"
             android:fontFamily="@font/montserrat_semi_bold"
             android:gravity="center"
-            tools:text="@string/_1015"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtNumberOfPets" />
+            app:layout_constraintTop_toBottomOf="@id/txtNumberOfPets"
+            tools:text="@string/_1015" />
 
         <TextView
             android:id="@+id/txtNumberOfAdoptions"
@@ -105,14 +105,14 @@
             android:background="@drawable/petner_text_label_background"
             android:fontFamily="@font/montserrat_semi_bold"
             android:gravity="center"
-            tools:text="@string/_27"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtNumberOfAdoptions" />
+            app:layout_constraintTop_toBottomOf="@id/txtNumberOfAdoptions"
+            tools:text="@string/_27" />
 
         <LinearLayout
             android:id="@+id/viewRvGraphic"
@@ -133,7 +133,9 @@
                 android:id="@+id/rvGraphicPetner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone" />
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -194,7 +196,9 @@
                 android:id="@+id/rvRegistrants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp" />
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
 
@@ -228,6 +232,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAssignment"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="15dp" />

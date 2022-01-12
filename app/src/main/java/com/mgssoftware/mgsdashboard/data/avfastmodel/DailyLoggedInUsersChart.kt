@@ -8,6 +8,6 @@ data class DailyLoggedInUsersChart(
     val createdAt: String? = null,
     @SerializedName("day")
     val day: String? = null,
-    @SerializedName("users_count")
+    @SerializedName("count")
     val usersCount: Int? = null
 )

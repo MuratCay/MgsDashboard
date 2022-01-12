@@ -1,7 +1,9 @@
 package com.mgssoftware.mgsdashboard.adapters.avfastadapter
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.mgssoftware.mgsdashboard.adapters.avfastadapter.avfastviewholder.AvfastGraphicViewHolder
 import com.mgssoftware.mgsdashboard.data.avfastmodel.AvfastAPI
@@ -10,8 +12,6 @@ import com.mgssoftware.mgsdashboard.ui.fragment.avfast.AvfastEnum
 
 class AvfastGraphicAdapter(
     private val graphicsTitle: List<String>,
-//    private val graphicsDescription: List<String>,
-//    private val barBottomValue: List<String>,
     private val apiData: AvfastAPI
 ) : RecyclerView.Adapter<AvfastGraphicViewHolder>() {
 
@@ -21,6 +21,7 @@ class AvfastGraphicAdapter(
         return AvfastGraphicViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: AvfastGraphicViewHolder, position: Int) {
         holder.setAvfastGraphTitle(graphicsTitle[position])
 

@@ -2,7 +2,6 @@ package com.mgssoftware.mgsdashboard.ui.fragment.avfast
 
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mgssoftware.mgsdashboard.adapters.avfastadapter.AvfastAssignmentAdapter
 import com.mgssoftware.mgsdashboard.adapters.avfastadapter.AvfastGraphicAdapter
 import com.mgssoftware.mgsdashboard.adapters.avfastadapter.AvfastRegistrantsAdapter
@@ -18,14 +17,11 @@ import retrofit2.Response
 
 class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding::inflate) {
 
-//    private val viewModel: AvfastFragmentViewModel by viewModels()
-
     private val retrofit = AvfastRetrofitClient.getAvfastRetrofitClient()
-    private val apiService = retrofit.create(RetrofitAPI::class.java)
+    private val apiService: RetrofitAPI = retrofit.create(RetrofitAPI::class.java)
 
     private var myData: AvfastAPI? = null
     private lateinit var myAdapter: AvfastGraphicAdapter
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -77,29 +73,21 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
             "BU AY KAYITLI KULLANICI", "Günlük Giriş", "Yeni Task",
             "Başvurma", "Tamamlanan", "Değerlendirme"
         )
-
         myData?.let {
             myAdapter = AvfastGraphicAdapter(list, it)
         }
-
         binding.rvGraphicAvfast.setHasFixedSize(true)
-        binding.rvGraphicAvfast.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvGraphicAvfast.adapter = myAdapter
     }
 
     private fun configureAssignmentRecyclerView() {
         binding.rvAssignment?.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
     }
 
     private fun configureRegistrantsRecyclerView() {
         binding.rvRegistrants?.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
     }

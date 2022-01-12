@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerAssignmentAdapter
 import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerGraphicAdapter
 import com.mgssoftware.mgsdashboard.adapters.petneradapter.PetnerRegistrantsAdapter
@@ -21,11 +20,9 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
 
     private val retrofit = PetnerRetrofitClient.getPetnerRetrofitClient()
     private val apiService = retrofit.create(RetrofitAPI::class.java)
-    private val viewModel: PetnerFragmentViewModel by viewModels()
 
     private var myData: PetnerAPI? = null
     private lateinit var myAdapter: PetnerGraphicAdapter
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,8 +56,6 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
             }
         })
     }
-
-
     private fun updateGraphicRecyclerView() {
         val list = listOf(
             "BU AY KAYITLI KULLANICI", "Günlük Giriş", "Yeni POST(FORUM)",
@@ -70,29 +65,18 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
         myData?.let {
             myAdapter = PetnerGraphicAdapter(list, it)
         }
-
-        binding.rvGraphicPetner.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvGraphicPetner.adapter = myAdapter
     }
-
     private fun configureAssignmentRecyclerView() {
         binding.rvAssignment.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
-
     }
-
     private fun configureRegistrantsRecyclerView() {
         binding.rvRegistrants.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
     }
-
     private fun addIndicator() {
         binding.arIndicator.attachTo(binding.rvGraphicPetner, true)
     }

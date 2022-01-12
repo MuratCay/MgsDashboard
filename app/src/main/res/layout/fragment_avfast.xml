@@ -101,7 +101,10 @@
                 android:id="@+id/rvGraphicAvfast"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone" />
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_avfast_graphic" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
@@ -164,7 +167,10 @@
                 android:id="@+id/rvRegistrants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp" />
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/avfast_item_registrants_recycler" />
 
         </LinearLayout>
 
@@ -180,7 +186,7 @@
             app:layout_constraintStart_toStartOf="@id/viewRvRegistrants"
             app:layout_constraintTop_toBottomOf="@id/viewRvRegistrants" />
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/viewRvAssignment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -188,7 +194,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="58dp"
-            android:background="@drawable/avfast_corner_registrants"
+            android:background="@color/white"
+            app:cardCornerRadius="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -200,9 +207,12 @@
                 android:id="@+id/rvAssignment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp" />
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/avfast_assignment_item_recycler" />
 
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -9,8 +9,6 @@ import com.mgssoftware.mgsdashboard.base.BaseFragment
 import com.mgssoftware.mgsdashboard.databinding.FragmentSplashBinding
 
 class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding::inflate) {
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val counter = object : CountDownTimer(1000, 1000) {
@@ -18,14 +16,12 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 Log.e("CountDownTimer", "seconds remaining: ${millisUntilFinished / 1000}")
 
             }
-
             override fun onFinish() {
                 val action = SplashFragmentDirections.actionSplashFragmentToMainFragment()
                 findNavController().navigate(action)
             }
         }
         counter.start()
-
     }
 }
 

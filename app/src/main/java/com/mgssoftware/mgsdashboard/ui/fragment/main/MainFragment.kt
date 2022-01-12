@@ -13,16 +13,13 @@ import com.mgssoftware.mgsdashboard.databinding.FragmentMainBinding
 
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureTabLayout()
     }
 
     private fun configureTabLayout() {
-
         val title = arrayListOf("AvFast", "Petner")
-
         binding.viewPager.adapter = FragmentAdapter(childFragmentManager, lifecycle)
         binding.viewPager.isUserInputEnabled = false
 
@@ -37,7 +34,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-
             override fun onTabSelected(tab: TabLayout.Tab?) {
 
                 binding.tabLayout.tabTextColors = ContextCompat.getColorStateList(
@@ -64,7 +60,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                     )
                 }
             }
-
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
