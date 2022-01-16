@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "876907550280",
+    "project_id": "mgsdashboard",
+    "storage_bucket": "mgsdashboard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:876907550280:android:efb0850e6d047891e66a7d",
+        "android_client_info": {
+          "package_name": "com.mgssoftware.mgsdashboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "876907550280-2un49is226gfbsjnooetbsg6o7nqkjv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mgssoftware.mgsdashboard",
+            "certificate_hash": "706d6abdcad0d8861913694693f6e7e746e4bb50"
+          }
+        },
+        {
+          "client_id": "876907550280-q8s5n616dl1frk41ih2ge27lskoci975.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQGjNvgLfet1KnAibDKYUGp5ANBoUybwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "876907550280-q8s5n616dl1frk41ih2ge27lskoci975.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

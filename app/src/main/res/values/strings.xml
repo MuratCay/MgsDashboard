@@ -24,5 +24,19 @@
     <string name="kay_t_oldu">kayıt oldu.</string>
     <string name="surname">Surname</string>
     <string name="name">Name</string>
+    <string name="login_desc">Please enter the details below the continue</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="login_now">Login Now</string>
+    <string name="login">Login</string>
+    <string name="not_have_account">Not have account? <b>SignUp</b></string>
+    <string name="ho_geldiniz">Hoşgeldiniz</string>
+    <string name="redminer">Redminer</string>
+    <string name="main_page_date">24 / 12 / 2021, 14:43</string>
+    <string name="mobil_uygulamalar">Mobil <br>Uygulama</br> </string>
+    <string name="mgs_logo">MGS Logo</string>
+    <string name="task_completion">TASK COMPLETION</string>
+    <string name="elif_akdogan">Elif Akdoğan</string>
+    <string name="opened_tasks">OPENED TASKS</string>
 
 </resources>

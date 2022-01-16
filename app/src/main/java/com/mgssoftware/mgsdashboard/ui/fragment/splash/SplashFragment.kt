@@ -17,7 +17,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
             }
             override fun onFinish() {
-                val action = SplashFragmentDirections.actionSplashFragmentToMainFragment()
+                val action = SplashFragmentDirections.actionSplashFragmentToLoginFragment()
                 findNavController().navigate(action)
             }
         }

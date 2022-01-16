@@ -18,5 +18,10 @@
     <color name="petner_title_color">#2D2D2D</color>
     <color name="petner_page_background">#FBF2FF</color>
     <color name="indicator_unselected_color_petner">#D2B3E2</color>
+    <color name="main_page_blue_light"> #3D7CC9</color>
+    <color name="main_page_black">#444444</color>
+    <color name="redminer_background">#F4F8FF</color>
+    <color name="redmine_graphic_text_color">#898A8D</color>
 </resources>
+
 

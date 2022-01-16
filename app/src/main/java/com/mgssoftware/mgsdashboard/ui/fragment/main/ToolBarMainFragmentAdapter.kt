@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.mgssoftware.mgsdashboard.ui.fragment.avfast.AvfastFragment
-import com.mgssoftware.mgsdashboard.ui.fragment.petner.PetnerFragment
+import com.mgssoftware.mgsdashboard.avfast.ui.fragment.AvfastFragment
+import com.mgssoftware.mgsdashboard.petner.ui.fragment.PetnerFragment
 import com.mgssoftware.mgsdashboard.utils.Constants.NUM_TABS
 
 class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :

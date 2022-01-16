@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txtNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="1."
+        android:textColor="@color/main_page_black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgFirstPlace"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/img_elif_akdogan"
+        app:layout_constraintBottom_toBottomOf="@+id/txtNumber"
+        app:layout_constraintStart_toEndOf="@id/txtNumber"
+        app:layout_constraintTop_toTopOf="@id/txtNumber" />
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/elif_akdogan"
+        android:textColor="@color/main_page_black"
+        android:textSize="16sp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgFirstPlace"
+        app:layout_constraintEnd_toStartOf="@+id/imgPointStar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgFirstPlace"
+        app:layout_constraintTop_toTopOf="@+id/imgFirstPlace" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgPointStar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="14dp"
+        android:src="@drawable/img_point_star"
+        app:layout_constraintBottom_toBottomOf="@+id/imgFirstPlace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgFirstPlace" />
+
+    <TextView
+        android:id="@+id/txtStoryPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="90"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgPointStar"
+        app:layout_constraintEnd_toEndOf="@+id/imgPointStar"
+        app:layout_constraintStart_toStartOf="@+id/imgPointStar"
+        app:layout_constraintTop_toTopOf="@+id/imgPointStar" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#DEDEDE"
+        app:layout_constraintEnd_toEndOf="@+id/imgPointStar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/txtNumber"
+        app:layout_constraintTop_toBottomOf="@id/imgFirstPlace" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
