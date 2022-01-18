@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mgssoftware.mgsdashboard.databinding.ItemOpenedTasksFirstPlaceBinding
+import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCreated
 import com.mgssoftware.mgsdashboard.redminer.openedtasks.adapters.viewholder.OpenedTasksFirstPlaceViewHolder
 
-class OpenedTasksFirstPlaceAdapter(private val openedOpenedFirstPlace: MutableList<OpenedFirstPlace>) :
+class OpenedTasksFirstPlaceAdapter(private val openedOpenedFirstPlace: List<TaskCreated>) :
     RecyclerView.Adapter<OpenedTasksFirstPlaceViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -24,12 +25,12 @@ class OpenedTasksFirstPlaceAdapter(private val openedOpenedFirstPlace: MutableLi
 
     override fun onBindViewHolder(holder: OpenedTasksFirstPlaceViewHolder, position: Int) {
         holder.bind(openedOpenedFirstPlace[position])
-        if (position == openedOpenedFirstPlace.size - 1) {
+        if (position == itemCount-1) {
             holder.itemBinding.line.visibility = View.GONE
         } else {
             View.VISIBLE
         }
     }
 
-    override fun getItemCount(): Int = openedOpenedFirstPlace.size
+    override fun getItemCount(): Int = 3
 }

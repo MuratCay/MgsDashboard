@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/redminer_background"
-    tools:context=".redminer.taskcompletion.ui.TaskCompletionFragment">
+    tools:context=".redminer.taskcompletion.ui.fragment.TaskCompletionFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,19 +32,18 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="30dp"
-            app:cardElevation="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pageTitle">
 
             <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
                 android:layout_width="match_parent"
-                android:layout_marginStart="5dp"
-                android:layout_marginBottom="10dp"
                 android:layout_height="match_parent"
-                android:id="@+id/barChart"/>
-
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -56,7 +55,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="30dp"
-            app:cardElevation="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="@+id/cardTaskCompGraphic"
             app:layout_constraintStart_toStartOf="@+id/cardTaskCompGraphic"
             app:layout_constraintTop_toBottomOf="@id/cardTaskCompGraphic">
@@ -65,9 +64,11 @@
                 android:id="@+id/rvFirstPlaceTask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 android:orientation="vertical"
                 android:paddingTop="10dp"
-                android:paddingBottom="20dp"
+                android:paddingBottom="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="3"
                 tools:listitem="@layout/item_task_completion_firsplace" />
@@ -80,10 +81,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="48dp"
             android:paddingBottom="20dp"
             app:cardCornerRadius="30dp"
-            app:cardElevation="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardTaskFirstPlaceRecyclerView"
             app:layout_constraintStart_toStartOf="@+id/cardTaskFirstPlaceRecyclerView"
@@ -93,8 +94,10 @@
                 android:id="@+id/rvTaskRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 android:orientation="vertical"
-                android:paddingBottom="20dp"
+                android:paddingBottom="36dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="10"
                 tools:listitem="@layout/item_task_comp_recycler" />

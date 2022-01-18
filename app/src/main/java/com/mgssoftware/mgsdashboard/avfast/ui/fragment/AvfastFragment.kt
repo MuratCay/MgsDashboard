@@ -42,20 +42,20 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
     }
 
     private fun viewModelObserver() {
-        viewModel.updateAvfastRecycler.observe(viewLifecycleOwner, ::updateAvfastRecyclerObserver)
-        viewModel.getUpdateAvfastRecycler()
         viewModel.numberOfUsers.observe(viewLifecycleOwner, ::numberOfUsersObserver)
         viewModel.getNumberOfUsers()
         viewModel.numberOfPeopleOnline.observe(viewLifecycleOwner, ::numberOfPeopleOnlineObserver)
         viewModel.getNumberOfPeopleOnline()
-        viewModel.numberOfRegistered.observe(viewLifecycleOwner, ::numberOfRegisteredObserver)
-        viewModel.getNumberOfRegistered()
+        viewModel.updateAvfastRecycler.observe(viewLifecycleOwner, ::updateAvfastRecyclerObserver)
+        viewModel.getUpdateAvfastRecycler()
+        viewModel.rvRegistrants.observe(viewLifecycleOwner, ::rvRegistrantsObserver)
+        viewModel.getRvRegistrants()
         viewModel.numberOfRecentEvents.observe(viewLifecycleOwner, ::numberOfRecentEventsObserver)
         viewModel.getNumberOfRecentEvents()
         viewModel.rvAssignment.observe(viewLifecycleOwner, ::rvAssignmentObserver)
         viewModel.getRvAssignment()
-        viewModel.rvRegistrants.observe(viewLifecycleOwner, ::rvRegistrantsObserver)
-        viewModel.getRvRegistrants()
+        viewModel.numberOfRegistered.observe(viewLifecycleOwner, ::numberOfRegisteredObserver)
+        viewModel.getNumberOfRegistered()
     }
 
     private fun numberOfUsersObserver(response: AvfastAPI) {
@@ -68,13 +68,13 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
 
     @SuppressLint("SetTextI18n")
     private fun numberOfRegisteredObserver(response: AvfastAPI) {
-        binding.numberOfRegistered!!.text =
+        binding.numberOfRegistered?.text =
             "Kayıt Olanlar(${response.registerUsers?.size.toString()})"
     }
 
     @SuppressLint("SetTextI18n")
     private fun numberOfRecentEventsObserver(response: AvfastAPI) {
-        binding.numberOfRecentEvents!!.text = "Son Olanlar(${response.logs?.size.toString()})"
+        binding.numberOfRecentEvents?.text = "Son Olanlar(${response.logs?.size.toString()})"
     }
 
     private fun rvAssignmentObserver(response: AvfastAPI) {

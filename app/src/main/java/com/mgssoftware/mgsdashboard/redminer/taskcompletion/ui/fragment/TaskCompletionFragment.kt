@@ -1,77 +1,72 @@
-package com.mgssoftware.mgsdashboard.redminer.taskcompletion.ui
+package com.mgssoftware.mgsdashboard.redminer.taskcompletion.ui.fragment
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.mgssoftware.mgsdashboard.R
 import com.mgssoftware.mgsdashboard.base.BaseFragment
+import com.mgssoftware.mgsdashboard.data.repository.MainRepository
+import com.mgssoftware.mgsdashboard.data.service.RetrofitAPI
 import com.mgssoftware.mgsdashboard.databinding.FragmentTaskCompletionBinding
-import com.mgssoftware.mgsdashboard.redminer.taskcompletion.adapters.CompletionFirstPlace
+import com.mgssoftware.mgsdashboard.redminer.data.model.RedminerAPI
+import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompleted
+import com.mgssoftware.mgsdashboard.redminer.data.remote.RedminerRetrofitClient
 import com.mgssoftware.mgsdashboard.redminer.taskcompletion.adapters.TaskCompFirstPlaceAdapter
 import com.mgssoftware.mgsdashboard.redminer.taskcompletion.adapters.TaskCompletionAdapter
-import com.mgssoftware.mgsdashboard.redminer.taskcompletion.adapters.TaskCompletionDataClass
+import com.mgssoftware.mgsdashboard.redminer.taskcompletion.ui.viewmodel.TasksCompletionViewModel
+import com.mgssoftware.mgsdashboard.ui.factory.ViewModelFactory
+import retrofit2.Retrofit
 
 
 class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
     FragmentTaskCompletionBinding::inflate
 ) {
 
+    private val retrofit: Retrofit by lazy {
+        RedminerRetrofitClient.getRedminerRetrofitClient()
+    }
+    private val apiService: RetrofitAPI by lazy {
+        retrofit.create(RetrofitAPI::class.java)
+    }
+    private val repository: MainRepository by lazy {
+        MainRepository(apiService)
+    }
+    private val viewModel: TasksCompletionViewModel by viewModels {
+        ViewModelFactory(repository)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureBarChart()
+        viewModelObserver()
 
-        binding.rvFirstPlaceTask.adapter = TaskCompFirstPlaceAdapter(loadFirstPlace())
-        binding.rvTaskRecycler.adapter = TaskCompletionAdapter(loadTaskRecycler())
+//        binding.rvTaskRecycler.adapter = TaskCompletionAdapter(loadTaskRecycler())
     }
 
-    private fun loadFirstPlace(): MutableList<CompletionFirstPlace> {
-        return mutableListOf(
-            CompletionFirstPlace(
-                "1.",
-                R.drawable.img_elif_akdogan,
-                "Elif Akdoğan",
-                R.drawable.img_point_star,
-                "90"
-            ),
-            CompletionFirstPlace(
-                "2.",
-                R.drawable.img_arda_aydin,
-                "Arda Aydın",
-                R.drawable.img_point_star_gray,
-                "85"
-            ),
-            CompletionFirstPlace(
-                "3.",
-                R.drawable.img_aykut_karagulle,
-                "Aykut Karagülle",
-                R.drawable.img_point_star_brown,
-                "70"
-            )
-        )
+    private fun viewModelObserver(){
+        viewModel.rvFirstPlace.observe(viewLifecycleOwner,::rvFirstPlaceObserver)
+        viewModel.getRvFirstPlace()
+        viewModel.rvTaskCompletion.observe(viewLifecycleOwner,::rvTaskCompletionObserver)
+        viewModel.getRvTaskCompletion()
     }
 
-    private fun loadTaskRecycler(): MutableList<TaskCompletionDataClass> {
-        return mutableListOf(
-            TaskCompletionDataClass("7.", "Murat Çay", "00"),
-            TaskCompletionDataClass("7.", "Murat Çay", "00"),
-            TaskCompletionDataClass("7.", "Murat Çay", "00"),
-            TaskCompletionDataClass("7.", "Murat Çay", "00"),
-            TaskCompletionDataClass("7.", "Murat Çay", "00"),
-            TaskCompletionDataClass("7.", "Murat Çay", "00"),
-            TaskCompletionDataClass("7.", "Murat Çay", "00"),
-            TaskCompletionDataClass("7.", "Murat Çay", "00"),
-            TaskCompletionDataClass("7.", "Murat Çay", "00"),
-            TaskCompletionDataClass("7.", "Murat Çay", "00")
-        )
+    private fun rvTaskCompletionObserver(response: RedminerAPI){
+        binding.rvTaskRecycler.adapter = TaskCompletionAdapter(response.taskCompleted as List<TaskCompleted>)
     }
+
+    private fun rvFirstPlaceObserver(response: RedminerAPI){
+        binding.rvFirstPlaceTask.adapter = TaskCompFirstPlaceAdapter(response.taskCompleted as List<TaskCompleted>)
+    }
+
 
     private fun model(): Array<String> {
         return arrayOf(
@@ -95,12 +90,12 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
         barEntry.add(BarEntry(8f, 30f))
         barEntry.add(BarEntry(9f, 25f))
 
-
         val barDataSet = BarDataSet(barEntry, "Storypoint")
         barDataSet.color = R.color.main_page_blue_light
         barDataSet.valueTextSize = 10f
-        barDataSet.valueFormatter
-        barDataSet.color = ContextCompat.getColor(requireContext(), R.color.main_page_blue_light)
+        barDataSet.valueFormatter = DefaultValueFormatter(0)
+        barDataSet.color =
+            ContextCompat.getColor(requireContext(), R.color.redmine_graphic_chart_light_blue)
         val barData = BarData(barDataSet)
 
         binding.barChart.apply {
@@ -109,10 +104,9 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
             setFitBars(false)
             description.isEnabled = false
 
-            data.barWidth = 0.7f
+            data.barWidth = 0.5f
             data.setDrawValues(true)
             setTouchEnabled(false)
-
 
             axisLeft.textColor = ContextCompat.getColor(context, R.color.redmine_graphic_text_color)
             axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.main_page_blue_light)
@@ -126,7 +120,7 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
             axisLeft.granularity = 1.0f
             axisLeft.isGranularityEnabled = true
 
-            xAxis.textColor = ContextCompat.getColor(context, R.color.redmine_graphic_text_color)
+            xAxis.textColor = ContextCompat.getColor(context, R.color.black)
             xAxis.axisLineColor = ContextCompat.getColor(context, R.color.main_page_blue_light)
             xAxis.valueFormatter = IndexAxisValueFormatter(model())
             xAxis.gridColor = ContextCompat.getColor(context, R.color.white)
@@ -134,9 +128,8 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
             xAxis.isEnabled = true
             xAxis.textSize = 8f
             xAxis.axisLineWidth = 1f
-            xAxis.isGranularityEnabled = true
             xAxis.granularity = 1f
-            xAxis.axisMinimum = 10f
+            xAxis.axisMinimum = 0f
             xAxis.mAxisMinimum = -0.8f
 
             axisRight.isEnabled = false

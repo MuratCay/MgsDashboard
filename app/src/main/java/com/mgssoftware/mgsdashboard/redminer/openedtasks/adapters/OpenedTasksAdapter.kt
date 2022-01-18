@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mgssoftware.mgsdashboard.databinding.ItemOpenedTasksRecyclerBinding
+import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCreated
 import com.mgssoftware.mgsdashboard.redminer.openedtasks.adapters.viewholder.OpenedTasksViewHolder
 
-class OpenedTasksAdapter(private val openedTaskList: MutableList<OpenedTasksDataClass>) :
+class OpenedTasksAdapter(private val openedTaskList: List<TaskCreated>) :
     RecyclerView.Adapter<OpenedTasksViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OpenedTasksViewHolder {
         val view = ItemOpenedTasksRecyclerBinding.inflate(

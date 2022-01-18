@@ -10,23 +10,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="1."
+        tools:text="1."
         android:textColor="@color/main_page_black"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/imgFirstPlace"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginStart="10dp"
-        android:src="@drawable/img_elif_akdogan"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/img_elif_akdogan"
         app:layout_constraintBottom_toBottomOf="@+id/txtNumber"
         app:layout_constraintStart_toEndOf="@id/txtNumber"
-        app:layout_constraintTop_toTopOf="@id/txtNumber" />
+        app:layout_constraintTop_toTopOf="@id/txtNumber"
+        app:riv_corner_radius="30dip"
+        app:riv_mutate_background="true"
+        app:riv_oval="true" />
 
     <TextView
         android:id="@+id/txtName"
@@ -34,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="@string/elif_akdogan"
+        tools:text="@string/elif_akdogan"
         android:textColor="@color/main_page_black"
         android:textSize="16sp"
         android:layout_marginEnd="16dp"
@@ -59,7 +63,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="90"
+        tools:text="90"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgPointStar"
@@ -71,7 +75,7 @@
         android:id="@+id/line"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:background="#DEDEDE"
         app:layout_constraintEnd_toEndOf="@+id/imgPointStar"
         app:layout_constraintHorizontal_bias="0.5"

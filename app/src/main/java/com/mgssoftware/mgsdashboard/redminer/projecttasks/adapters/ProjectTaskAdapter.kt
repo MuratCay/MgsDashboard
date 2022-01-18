@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mgssoftware.mgsdashboard.databinding.ItemProjectTasksRecyclerBinding
+import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompletedTeam
 import com.mgssoftware.mgsdashboard.redminer.projecttasks.adapters.viewholder.ProjectTasksViewHolder
 
-class ProjectTaskAdapter(private val projectList: MutableList<ProjectTasksDataClass>) :
+class ProjectTaskAdapter(private val projectList: MutableList<TaskCompletedTeam>) :
     RecyclerView.Adapter<ProjectTasksViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectTasksViewHolder {
         val view = ItemProjectTasksRecyclerBinding.inflate(

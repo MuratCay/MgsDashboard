@@ -22,6 +22,7 @@
     <color name="main_page_black">#444444</color>
     <color name="redminer_background">#F4F8FF</color>
     <color name="redmine_graphic_text_color">#898A8D</color>
+    <color name="redmine_graphic_chart_light_blue">#4FC3F7</color>
 </resources>
 
 

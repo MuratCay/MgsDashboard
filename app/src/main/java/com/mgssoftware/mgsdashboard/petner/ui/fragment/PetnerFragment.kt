@@ -43,12 +43,6 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
     private fun viewModelObserver() {
         viewModel.numberOfUsers.observe(viewLifecycleOwner, ::numberOfUsersObserver)
         viewModel.getNumberOfUsers()
-        viewModel.updatePetnerRecycler.observe(viewLifecycleOwner, ::updateGraphicObserver)
-        viewModel.getUpdatePetnerRecycler()
-        viewModel.rvAssignment.observe(viewLifecycleOwner, ::rvAssignmentObserver)
-        viewModel.getRvAssignment()
-        viewModel.rvRegistrants.observe(viewLifecycleOwner, ::rvRegistrantsObserver)
-        viewModel.getRvRegistrants()
         viewModel.currentNumberOfPets.observe(viewLifecycleOwner, ::currentNumberOfPetsObserver)
         viewModel.getCurrentNumberOfPets()
         viewModel.currentNumberOfAdoptions.observe(
@@ -56,10 +50,16 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
             ::currentNumberOfAdoptionsObserver
         )
         viewModel.getCurrentNumberOfAdoptions()
+        viewModel.updatePetnerRecycler.observe(viewLifecycleOwner, ::updateGraphicObserver)
+        viewModel.getUpdatePetnerRecycler()
         viewModel.numberOfRegistered.observe(viewLifecycleOwner, ::numberOfRegisteredObserver)
         viewModel.getNumberOfRegistered()
+        viewModel.rvRegistrants.observe(viewLifecycleOwner, ::rvRegistrantsObserver)
+        viewModel.getRvRegistrants()
         viewModel.numberOfRecentEvents.observe(viewLifecycleOwner, ::numberOfRecentEventsObserver)
         viewModel.getNumberOfRecentEvents()
+        viewModel.rvAssignment.observe(viewLifecycleOwner, ::rvAssignmentObserver)
+        viewModel.getRvAssignment()
     }
 
     @SuppressLint("SetTextI18n")

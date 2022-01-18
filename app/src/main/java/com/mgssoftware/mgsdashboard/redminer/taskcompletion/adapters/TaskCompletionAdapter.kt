@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mgssoftware.mgsdashboard.databinding.ItemTaskCompRecyclerBinding
+import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompleted
 import com.mgssoftware.mgsdashboard.redminer.taskcompletion.adapters.viewholder.TaskCompletionViewHolder
 
-class TaskCompletionAdapter(private val taskCompList: MutableList<TaskCompletionDataClass>) :
+class TaskCompletionAdapter(private val taskCompList: List<TaskCompleted>) :
     RecyclerView.Adapter<TaskCompletionViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskCompletionViewHolder {
         val view =

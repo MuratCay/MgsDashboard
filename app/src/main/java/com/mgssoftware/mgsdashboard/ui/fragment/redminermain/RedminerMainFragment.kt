@@ -11,11 +11,8 @@ class RedminerMainFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewPager.adapter = RedminerMainFragmentAdapter(childFragmentManager, lifecycle)
-
         TabLayoutMediator(binding.intoTabLayout, binding.viewPager) { tab, position ->
 
         }.attach()
-
-
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".redminer.openedtasks.ui.OpenedTasksFragment">
+    tools:context=".redminer.openedtasks.ui.fragment.OpenedTasksFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,8 +31,20 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="30dp"
-            app:cardElevation="10dp"
-            app:layout_constraintTop_toBottomOf="@id/pageTitle" />
+            app:cardElevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pageTitle" >
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="10dp" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardTaskFirstPlaceRecyclerView"
@@ -42,7 +54,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:cardCornerRadius="30dp"
-            app:cardElevation="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="@+id/cardOpenedGraphic"
             app:layout_constraintStart_toStartOf="@+id/cardOpenedGraphic"
             app:layout_constraintTop_toBottomOf="@id/cardOpenedGraphic">
@@ -51,11 +63,14 @@
                 android:id="@+id/rvFirstPlaceTask"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 android:orientation="vertical"
                 android:paddingTop="10dp"
-                android:paddingBottom="20dp"
+                android:paddingBottom="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="3" tools:listitem="@layout/item_opened_tasks_first_place" />
+                tools:itemCount="3"
+                tools:listitem="@layout/item_opened_tasks_first_place" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -64,10 +79,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="48dp"
             android:paddingBottom="20dp"
             app:cardCornerRadius="30dp"
-            app:cardElevation="10dp"
+            app:cardElevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardTaskFirstPlaceRecyclerView"
             app:layout_constraintStart_toStartOf="@+id/cardTaskFirstPlaceRecyclerView"
@@ -77,13 +92,15 @@
                 android:id="@+id/rvTaskRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
                 android:orientation="vertical"
-                tools:itemCount="10"
-                android:paddingBottom="20dp"
+                android:paddingBottom="36dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="10"
                 tools:listitem="@layout/item_opened_tasks_recycler" />
 
         </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
