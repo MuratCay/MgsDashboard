@@ -1,5 +1,6 @@
 package com.mgssoftware.mgsdashboard.redminer.taskcompletion.adapters.viewholder
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mgssoftware.mgsdashboard.R
@@ -8,11 +9,15 @@ import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompleted
 
 class TaskCompFirstPlaceViewHolder(val itemBinding: ItemTaskCompletionFirsplaceBinding) :
     RecyclerView.ViewHolder(itemBinding.root) {
-    fun bind(item: TaskCompleted) {
-        itemBinding.txtNumber.text = "${adapterPosition + 1}."
-        itemBinding.txtStoryPoint.text = item.points.toString()
-        itemBinding.txtName.text = item.name
-        Glide.with(itemView.context).load(item.imageUrl).into(itemBinding.imgFirstPlace)
+    fun bind(item: TaskCompleted?) {
+        if (item != null) {
+            itemBinding.txtNumber.text = "${adapterPosition + 1}."
+            itemBinding.txtStoryPoint.text = item.points.toString()
+            itemBinding.txtName.text = item.name
+            Glide.with(itemView.context).load(item.imageUrl).into(itemBinding.imgFirstPlace)
+        } else {
+            Log.e("Null", "API dan null geldi!")
+        }
 
         when (adapterPosition) {
             0 -> itemBinding.imgPointStar.setImageResource(R.drawable.img_point_star)

@@ -6,9 +6,9 @@ import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCreated
 
 class OpenedTasksViewHolder(val itemBinding: ItemOpenedTasksRecyclerBinding) :
     RecyclerView.ViewHolder(itemBinding.root) {
-    fun bind(item: TaskCreated) {
-        itemBinding.txtNumber.text = "${adapterPosition + 4}."
-        itemBinding.txtValue.text = item.points.toString()
-        itemBinding.txtNameAndSurname.text = item.name
+    fun bind(item: TaskCreated?) {
+            itemBinding.txtNameAndSurname.text = item?.name ?: ""
+            itemBinding.txtNumber.text = "${adapterPosition + 4}."
+            itemBinding.txtValue.text = item?.points.toString()
     }
 }

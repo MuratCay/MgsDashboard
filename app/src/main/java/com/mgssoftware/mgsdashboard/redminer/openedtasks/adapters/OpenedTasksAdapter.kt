@@ -8,7 +8,7 @@ import com.mgssoftware.mgsdashboard.databinding.ItemOpenedTasksRecyclerBinding
 import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCreated
 import com.mgssoftware.mgsdashboard.redminer.openedtasks.adapters.viewholder.OpenedTasksViewHolder
 
-class OpenedTasksAdapter(private val openedTaskList: List<TaskCreated>) :
+class OpenedTasksAdapter(private val openedTaskList: List<TaskCreated?>?) :
     RecyclerView.Adapter<OpenedTasksViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OpenedTasksViewHolder {
         val view = ItemOpenedTasksRecyclerBinding.inflate(
@@ -20,13 +20,13 @@ class OpenedTasksAdapter(private val openedTaskList: List<TaskCreated>) :
     }
 
     override fun onBindViewHolder(holder: OpenedTasksViewHolder, position: Int) {
-        holder.bind(openedTaskList[position])
-        if (position == openedTaskList.size - 1) {
+        holder.bind(openedTaskList?.get(position))
+        if (position == (openedTaskList?.size ?: 0) - 1) {
             holder.itemBinding.line.visibility = View.GONE
         } else {
             View.VISIBLE
         }
     }
 
-    override fun getItemCount(): Int = openedTaskList.size
+    override fun getItemCount(): Int = openedTaskList!!.size
 }

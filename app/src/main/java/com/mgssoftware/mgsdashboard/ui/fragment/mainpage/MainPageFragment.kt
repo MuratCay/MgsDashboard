@@ -15,8 +15,8 @@ class MainPageFragment : BaseFragment<FragmentMainPageBinding>(FragmentMainPageB
             findNavController().navigate(action)
         }
         binding.cardRedminer.setOnClickListener {
-            val action = MainPageFragmentDirections.actionMainPageFragmentToRedminerMainFragment()
-            findNavController().navigate(action)
+            val action2 = MainPageFragmentDirections.actionMainPageFragmentToRedminerMainFragment()
+            findNavController().navigate(action2)
         }
     }
 }

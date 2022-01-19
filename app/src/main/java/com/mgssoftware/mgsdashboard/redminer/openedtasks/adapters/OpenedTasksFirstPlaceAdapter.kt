@@ -8,7 +8,7 @@ import com.mgssoftware.mgsdashboard.databinding.ItemOpenedTasksFirstPlaceBinding
 import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCreated
 import com.mgssoftware.mgsdashboard.redminer.openedtasks.adapters.viewholder.OpenedTasksFirstPlaceViewHolder
 
-class OpenedTasksFirstPlaceAdapter(private val openedOpenedFirstPlace: List<TaskCreated>) :
+class OpenedTasksFirstPlaceAdapter(private val openedOpenedFirstPlace: List<TaskCreated?>?) :
     RecyclerView.Adapter<OpenedTasksFirstPlaceViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -24,7 +24,7 @@ class OpenedTasksFirstPlaceAdapter(private val openedOpenedFirstPlace: List<Task
     }
 
     override fun onBindViewHolder(holder: OpenedTasksFirstPlaceViewHolder, position: Int) {
-        holder.bind(openedOpenedFirstPlace[position])
+        holder.bind(openedOpenedFirstPlace?.get(position))
         if (position == itemCount-1) {
             holder.itemBinding.line.visibility = View.GONE
         } else {

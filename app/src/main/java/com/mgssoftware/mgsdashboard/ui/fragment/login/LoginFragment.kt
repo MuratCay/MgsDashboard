@@ -12,12 +12,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkUser()
-
     }
 
     private fun checkUser() {
         binding.btnLogin.setOnClickListener {
-            if (binding.edtEmail.text!!.isNotEmpty() && binding.edtPassword.text!!.isNotEmpty()) {
+            if (binding.edtEmail.text?.isNotEmpty() == true && binding.edtPassword.text?.isNotEmpty() == true) {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(
                     binding.edtEmail.text.toString(),
                     binding.edtPassword.text.toString()

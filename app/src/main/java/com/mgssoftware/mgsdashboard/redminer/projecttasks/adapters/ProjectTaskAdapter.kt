@@ -8,7 +8,7 @@ import com.mgssoftware.mgsdashboard.databinding.ItemProjectTasksRecyclerBinding
 import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompletedTeam
 import com.mgssoftware.mgsdashboard.redminer.projecttasks.adapters.viewholder.ProjectTasksViewHolder
 
-class ProjectTaskAdapter(private val projectList: MutableList<TaskCompletedTeam>) :
+class ProjectTaskAdapter(private val projectList: List<TaskCompletedTeam?>?) :
     RecyclerView.Adapter<ProjectTasksViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectTasksViewHolder {
         val view = ItemProjectTasksRecyclerBinding.inflate(
@@ -20,13 +20,13 @@ class ProjectTaskAdapter(private val projectList: MutableList<TaskCompletedTeam>
     }
 
     override fun onBindViewHolder(holder: ProjectTasksViewHolder, position: Int) {
-        holder.bind(projectList[position])
-        if (position == projectList.size - 1) {
+        holder.bind(projectList?.get(position))
+        if (position == (projectList?.size ?: 0) - 1) {
             holder.itemBinding.line.visibility = View.GONE
         } else {
             View.VISIBLE
         }
     }
 
-    override fun getItemCount(): Int = projectList.size
+    override fun getItemCount(): Int = projectList!!.size
 }

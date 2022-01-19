@@ -8,7 +8,7 @@ import com.mgssoftware.mgsdashboard.databinding.ItemTaskCompRecyclerBinding
 import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompleted
 import com.mgssoftware.mgsdashboard.redminer.taskcompletion.adapters.viewholder.TaskCompletionViewHolder
 
-class TaskCompletionAdapter(private val taskCompList: List<TaskCompleted>) :
+class TaskCompletionAdapter(private val taskCompList: List<TaskCompleted?>?) :
     RecyclerView.Adapter<TaskCompletionViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskCompletionViewHolder {
         val view =
@@ -21,13 +21,16 @@ class TaskCompletionAdapter(private val taskCompList: List<TaskCompleted>) :
     }
 
     override fun onBindViewHolder(holder: TaskCompletionViewHolder, position: Int) {
-        holder.bind(taskCompList[position])
-        if (position == taskCompList.size - 1) {
-            holder.itemBinding.line.visibility = View.GONE
-        } else {
-            View.VISIBLE
+        holder.bind(taskCompList?.get(position))
+        if (taskCompList != null) {
+            if (position == taskCompList.size - 1) {
+                taskCompList.sortedBy { it?.points }
+                holder.itemBinding.line.visibility = View.GONE
+            } else {
+                View.VISIBLE
+            }
         }
     }
 
-    override fun getItemCount(): Int = taskCompList.size
+    override fun getItemCount(): Int = taskCompList!!.size
 }
