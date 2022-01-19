@@ -55,11 +55,11 @@ class OpenedTasksFragment :
     }
 
     private fun rvTaskCompletionObserver(response: RedminerAPI) {
-        binding.rvTaskRecycler.adapter = OpenedTasksAdapter(response.taskCreated as List<TaskCreated>)
+        binding.rvTaskRecycler.adapter = OpenedTasksAdapter(response.taskCreated?.sortedBy { it?.points }?.reversed() as List<TaskCreated>)
     }
 
     private fun rvFirstPlaceObserver(response: RedminerAPI) {
-        binding.rvFirstPlaceTask.adapter = OpenedTasksFirstPlaceAdapter(response.taskCreated as List<TaskCreated>)
+        binding.rvFirstPlaceTask.adapter = OpenedTasksFirstPlaceAdapter(response.taskCreated?.sortedBy { it?.points }?.reversed() as List<TaskCreated>)
     }
 
     private fun model(): Array<String> {

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mgssoftware.mgsdashboard.data.repository.MainRepository
 import com.mgssoftware.mgsdashboard.redminer.data.model.RedminerAPI
+import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompleted
 import kotlinx.coroutines.launch
 
 class TasksCompletionViewModel(private val repository: MainRepository) : ViewModel() {
@@ -21,6 +22,7 @@ class TasksCompletionViewModel(private val repository: MainRepository) : ViewMod
     fun getRvTaskCompletion() {
         viewModelScope.launch {
             mutableRvTaskCompletion.value = repository.getRedminerUser()
+
         }
     }
 

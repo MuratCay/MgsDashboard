@@ -30,5 +30,5 @@ class AvfastAssignmentAdapter(private val assignmentList: List<Log?>?) :
         }
     }
 
-    override fun getItemCount(): Int = assignmentList?.size!!
+    override fun getItemCount(): Int = assignmentList!!.size
 }

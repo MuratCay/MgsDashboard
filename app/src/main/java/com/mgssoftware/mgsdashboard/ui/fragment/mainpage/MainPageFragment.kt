@@ -7,9 +7,9 @@ import com.mgssoftware.mgsdashboard.base.BaseFragment
 import com.mgssoftware.mgsdashboard.databinding.FragmentMainPageBinding
 
 class MainPageFragment : BaseFragment<FragmentMainPageBinding>(FragmentMainPageBinding::inflate) {
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.cardMobileApplication.setOnClickListener {
             val action = MainPageFragmentDirections.actionMainPageFragmentToMainFragment()
             findNavController().navigate(action)
@@ -18,5 +18,6 @@ class MainPageFragment : BaseFragment<FragmentMainPageBinding>(FragmentMainPageB
             val action2 = MainPageFragmentDirections.actionMainPageFragmentToRedminerMainFragment()
             findNavController().navigate(action2)
         }
+
     }
 }

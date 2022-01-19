@@ -8,7 +8,7 @@ import com.mgssoftware.mgsdashboard.databinding.ItemTaskCompletionFirsplaceBindi
 import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompleted
 import com.mgssoftware.mgsdashboard.redminer.taskcompletion.adapters.viewholder.TaskCompFirstPlaceViewHolder
 
-class TaskCompFirstPlaceAdapter(private val completionFirstPlaceList: List<TaskCompleted?>?) :
+class TaskCompFirstPlaceAdapter(private val completionFirstPlaceList: ArrayList<TaskCompleted>) :
     RecyclerView.Adapter<TaskCompFirstPlaceViewHolder>() {
 
     override fun onCreateViewHolder(

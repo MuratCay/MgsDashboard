@@ -57,11 +57,11 @@ class ProjectTasksFragment :
     }
 
     private fun rvProjectTasksObserver(response: RedminerAPI){
-        binding.rvProjectTaskRecycler.adapter = ProjectTaskAdapter(response.taskCompletedTeam as MutableList<TaskCompletedTeam>)
+        binding.rvProjectTaskRecycler.adapter = ProjectTaskAdapter(response.taskCompletedTeam?.sortedBy { it?.points }?.reversed() as MutableList<TaskCompletedTeam>)
     }
 
     private fun rvFirstPlaceObserver(response: RedminerAPI) {
-        binding.rvFirstPlaceTask.adapter = ProjectFirstPlaceAdapter(response.taskCompletedTeam as List<TaskCompletedTeam>)
+        binding.rvFirstPlaceTask.adapter = ProjectFirstPlaceAdapter(response.taskCompletedTeam?.sortedBy { it?.points }?.reversed() as List<TaskCompletedTeam>)
     }
 
 

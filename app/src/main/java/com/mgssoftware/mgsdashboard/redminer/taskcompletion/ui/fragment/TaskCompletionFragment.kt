@@ -30,6 +30,9 @@ import retrofit2.Retrofit
 class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
     FragmentTaskCompletionBinding::inflate
 ) {
+    lateinit var adapter: TaskCompletionAdapter
+
+    var list: ArrayList<TaskCompleted> = arrayListOf()
 
     private val retrofit: Retrofit by lazy {
         RedminerRetrofitClient.getRedminerRetrofitClient()
@@ -52,19 +55,25 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
 //        binding.rvTaskRecycler.adapter = TaskCompletionAdapter(loadTaskRecycler())
     }
 
-    private fun viewModelObserver(){
-        viewModel.rvFirstPlace.observe(viewLifecycleOwner,::rvFirstPlaceObserver)
+    private fun viewModelObserver() {
+        viewModel.rvFirstPlace.observe(viewLifecycleOwner, ::rvFirstPlaceObserver)
         viewModel.getRvFirstPlace()
-        viewModel.rvTaskCompletion.observe(viewLifecycleOwner,::rvTaskCompletionObserver)
+        viewModel.rvTaskCompletion.observe(viewLifecycleOwner, ::rvTaskCompletionObserver)
         viewModel.getRvTaskCompletion()
     }
 
-    private fun rvTaskCompletionObserver(response: RedminerAPI){
-        binding.rvTaskRecycler.adapter = TaskCompletionAdapter(response.taskCompleted as List<TaskCompleted>)
+    private fun rvTaskCompletionObserver(response: RedminerAPI?) {
+
+        val asd = response?.taskCompleted?.sortedBy { it.points }?.reversed() as ArrayList<TaskCompleted>
+
+        adapter.taskCompList = asd
+        binding.rvTaskRecycler.adapter = adapter
     }
 
-    private fun rvFirstPlaceObserver(response: RedminerAPI){
-        binding.rvFirstPlaceTask.adapter = TaskCompFirstPlaceAdapter(response.taskCompleted as List<TaskCompleted>)
+    private fun rvFirstPlaceObserver(response: RedminerAPI?) {
+        binding.rvFirstPlaceTask.adapter =
+            TaskCompFirstPlaceAdapter(response?.taskCompleted?.sortedBy { it.points }
+                ?.reversed() as ArrayList<TaskCompleted>)
     }
 
 

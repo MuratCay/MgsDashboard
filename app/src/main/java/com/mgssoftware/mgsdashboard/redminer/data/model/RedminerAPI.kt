@@ -7,9 +7,9 @@ data class RedminerAPI(
     @SerializedName("points_per_user")
     val pointsPerUser: List<Any?>? = null,
     @SerializedName("task_completed")
-    val taskCompleted: List<TaskCompleted?>? = null,
+    val taskCompleted: ArrayList<TaskCompleted>? = null,
     @SerializedName("task_completed_team")
-    val taskCompletedTeam: List<TaskCompletedTeam?>? = null,
+    val taskCompletedTeam: ArrayList<TaskCompletedTeam?>? = null,
     @SerializedName("task_created")
     val taskCreated: List<TaskCreated?>? = null
 )
