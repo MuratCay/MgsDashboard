@@ -63,17 +63,17 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
     }
 
     private fun rvTaskCompletionObserver(response: RedminerAPI?) {
-
-        val asd = response?.taskCompleted?.sortedBy { it.points }?.reversed() as ArrayList<TaskCompleted>
-
-        adapter.taskCompList = asd
-        binding.rvTaskRecycler.adapter = adapter
+        val taskCompletedList = response?.taskCompleted?.sortedBy { it?.points }?.reversed() as ArrayList<TaskCompleted>
+        for (i in 0 until 3){
+            taskCompletedList.removeAt(0)
+        }
+        binding.rvTaskRecycler.adapter = TaskCompletionAdapter(taskCompletedList)
     }
 
     private fun rvFirstPlaceObserver(response: RedminerAPI?) {
         binding.rvFirstPlaceTask.adapter =
-            TaskCompFirstPlaceAdapter(response?.taskCompleted?.sortedBy { it.points }
-                ?.reversed() as ArrayList<TaskCompleted>)
+            TaskCompFirstPlaceAdapter(response?.taskCompleted?.sortedBy { it?.points }
+                ?.reversed() as List<TaskCompleted>)
     }
 
 

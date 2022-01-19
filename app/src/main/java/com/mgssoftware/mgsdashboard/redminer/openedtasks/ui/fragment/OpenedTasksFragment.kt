@@ -41,25 +41,33 @@ class OpenedTasksFragment :
     private val viewModel: OpenedTasksViewModel by viewModels {
         ViewModelFactory(repository)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureBarChart()
         viewModelObserver()
     }
 
-    private fun viewModelObserver(){
-        viewModel.rvFirstPlace.observe(viewLifecycleOwner,::rvFirstPlaceObserver)
+    private fun viewModelObserver() {
+        viewModel.rvFirstPlace.observe(viewLifecycleOwner, ::rvFirstPlaceObserver)
         viewModel.getRvFirstPlace()
-        viewModel.rvOpenedTasks.observe(viewLifecycleOwner,::rvTaskCompletionObserver)
+        viewModel.rvOpenedTasks.observe(viewLifecycleOwner, ::rvTaskCompletionObserver)
         viewModel.getRvOpenedTasks()
     }
 
-    private fun rvTaskCompletionObserver(response: RedminerAPI) {
-        binding.rvTaskRecycler.adapter = OpenedTasksAdapter(response.taskCreated?.sortedBy { it?.points }?.reversed() as List<TaskCreated>)
+    private fun rvTaskCompletionObserver(response: RedminerAPI?) {
+        val openedTasksList = response?.taskCreated?.sortedBy { it?.points }
+            ?.reversed() as ArrayList<TaskCreated>
+        for (i in 0 until 3) {
+            openedTasksList.removeAt(0)
+        }
+        binding.rvTaskRecycler.adapter = OpenedTasksAdapter(openedTasksList)
     }
 
-    private fun rvFirstPlaceObserver(response: RedminerAPI) {
-        binding.rvFirstPlaceTask.adapter = OpenedTasksFirstPlaceAdapter(response.taskCreated?.sortedBy { it?.points }?.reversed() as List<TaskCreated>)
+    private fun rvFirstPlaceObserver(response: RedminerAPI?) {
+        binding.rvFirstPlaceTask.adapter =
+            OpenedTasksFirstPlaceAdapter(response?.taskCreated?.sortedBy { it?.points }
+                ?.reversed() as List<TaskCreated>)
     }
 
     private fun model(): Array<String> {

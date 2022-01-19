@@ -22,7 +22,6 @@ class TasksCompletionViewModel(private val repository: MainRepository) : ViewMod
     fun getRvTaskCompletion() {
         viewModelScope.launch {
             mutableRvTaskCompletion.value = repository.getRedminerUser()
-
         }
     }
 

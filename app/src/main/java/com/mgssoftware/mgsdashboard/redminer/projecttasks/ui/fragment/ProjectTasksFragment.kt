@@ -22,7 +22,6 @@ import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompletedTeam
 import com.mgssoftware.mgsdashboard.redminer.data.remote.RedminerRetrofitClient
 import com.mgssoftware.mgsdashboard.redminer.projecttasks.adapters.ProjectFirstPlaceAdapter
 import com.mgssoftware.mgsdashboard.redminer.projecttasks.adapters.ProjectTaskAdapter
-import com.mgssoftware.mgsdashboard.redminer.projecttasks.adapters.viewholder.ProjectTasksViewHolder
 import com.mgssoftware.mgsdashboard.redminer.projecttasks.ui.viewmodel.ProjectTasksViewModel
 import com.mgssoftware.mgsdashboard.ui.factory.ViewModelFactory
 import retrofit2.Retrofit
@@ -42,6 +41,7 @@ class ProjectTasksFragment :
     private val viewModel: ProjectTasksViewModel by viewModels {
         ViewModelFactory(repository)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -50,18 +50,25 @@ class ProjectTasksFragment :
     }
 
     private fun viewModelObserver() {
-        viewModel.rvFirstPlace.observe(viewLifecycleOwner,::rvFirstPlaceObserver)
+        viewModel.rvFirstPlace.observe(viewLifecycleOwner, ::rvFirstPlaceObserver)
         viewModel.getRvFirstPlace()
-        viewModel.rvProjectTasks.observe(viewLifecycleOwner,::rvProjectTasksObserver)
+        viewModel.rvProjectTasks.observe(viewLifecycleOwner, ::rvProjectTasksObserver)
         viewModel.getRvProjectTasks()
     }
 
-    private fun rvProjectTasksObserver(response: RedminerAPI){
-        binding.rvProjectTaskRecycler.adapter = ProjectTaskAdapter(response.taskCompletedTeam?.sortedBy { it?.points }?.reversed() as MutableList<TaskCompletedTeam>)
+    private fun rvProjectTasksObserver(response: RedminerAPI) {
+        val projectTasksList = response.taskCompletedTeam?.sortedBy { it?.points }
+            ?.reversed() as ArrayList<TaskCompletedTeam>
+        for (i in 0 until 3){
+            projectTasksList.removeAt(0)
+        }
+        binding.rvProjectTaskRecycler.adapter = ProjectTaskAdapter(projectTasksList)
     }
 
     private fun rvFirstPlaceObserver(response: RedminerAPI) {
-        binding.rvFirstPlaceTask.adapter = ProjectFirstPlaceAdapter(response.taskCompletedTeam?.sortedBy { it?.points }?.reversed() as List<TaskCompletedTeam>)
+        binding.rvFirstPlaceTask.adapter =
+            ProjectFirstPlaceAdapter(response.taskCompletedTeam?.sortedBy { it?.points }
+                ?.reversed() as List<TaskCompletedTeam>)
     }
 
 
@@ -92,7 +99,8 @@ class ProjectTasksFragment :
         barDataSet.color = R.color.main_page_blue_light
         barDataSet.valueTextSize = 10f
         barDataSet.valueFormatter = DefaultValueFormatter(0)
-        barDataSet.color = ContextCompat.getColor(requireContext(), R.color.redmine_graphic_chart_light_blue)
+        barDataSet.color =
+            ContextCompat.getColor(requireContext(), R.color.redmine_graphic_chart_light_blue)
         val barData = BarData(barDataSet)
 
         binding.barChart.apply {
