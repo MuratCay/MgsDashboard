@@ -18,9 +18,9 @@ class ProjectFirstPlaceViewHolder(val itemBinding: ItemProjectFirstPlaceBinding)
         }
 
         when (adapterPosition) {
-            0 -> itemBinding.imgPointStar.setImageResource(R.drawable.img_point_star)
-            1 -> itemBinding.imgPointStar.setImageResource(R.drawable.img_point_star_gray)
-            2 -> itemBinding.imgPointStar.setImageResource(R.drawable.img_point_star_brown)
+            0 -> itemBinding.imgPointStar.setImageResource(R.drawable.ic_point_star)
+            1 -> itemBinding.imgPointStar.setImageResource(R.drawable.ic_point_star_gray)
+            2 -> itemBinding.imgPointStar.setImageResource(R.drawable.ic_point_star_brown)
         }
     }
 }
