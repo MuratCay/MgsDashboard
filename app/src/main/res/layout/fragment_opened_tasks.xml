@@ -19,7 +19,7 @@
             android:fontFamily="@font/montserrat_semi_bold"
             android:text="@string/opened_tasks"
             android:textColor="@color/main_page_blue_light"
-            android:textSize="16sp"
+            android:textSize="@dimen/textview_subtitle_size16"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,16 +33,15 @@
             app:cardCornerRadius="30dp"
             app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pageTitle" >
+            app:layout_constraintTop_toBottomOf="@id/pageTitle">
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/barChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="5dp" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -68,9 +67,17 @@
                 android:orientation="vertical"
                 android:paddingTop="10dp"
                 android:paddingBottom="8dp"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="3"
                 tools:listitem="@layout/item_opened_tasks_first_place" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -96,9 +103,16 @@
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:paddingBottom="36dp"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="10"
                 tools:listitem="@layout/item_opened_tasks_recycler" />
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:indeterminate="true" />
 
         </com.google.android.material.card.MaterialCardView>
 

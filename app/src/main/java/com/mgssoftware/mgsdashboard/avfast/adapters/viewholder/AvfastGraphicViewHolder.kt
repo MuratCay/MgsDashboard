@@ -17,6 +17,46 @@ import java.util.ArrayList
 class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding) :
     RecyclerView.ViewHolder(itemBinding.root) {
 
+    /**
+     * Tek bir fonksiyonda yazmak için ->
+     *    fun tasksChart(tasksChart: List<Any?>?, weeklyTasksCount: Int?, type: String) {
+    var list: ArrayList<WeeklyTasksChart> = ArrayList()
+    when (type){
+    "week" ->{
+    tasksChart?.let{
+    for (item in tasksChart)
+    list.add(item as WeeklyTasksChart)
+    }
+    }
+    "day" -> {
+    tasksChart?.let{
+    for (item in tasksChart)
+    list.add(item as WeeklyTasksChart)
+    }
+    }
+    }
+    if (tasksChart != null) {
+    val barEntry = arrayListOf<BarEntry>()
+    val barBottomValue = arrayListOf<String>()
+    for (i in list.indices) {
+    barEntry.add(
+    BarEntry(i.toFloat(), list[i]?.createdAt!!.toFloat())
+    )
+    barBottomValue.add(convertToDateString(list.toString()))
+    }
+    val barDataSet = BarDataSet(barEntry, "")
+    barDataSet.color = ContextCompat.getColor(
+    itemBinding.root.context,
+    R.color.graphic_orange
+    )
+    itemBinding.graphicDescription.text = weeklyTasksCount.toString()
+
+    val barData = BarData(barDataSet)
+    setAllBarChart(barData, barBottomValue)
+    }
+    }
+     */
+
     fun usersInLastFiveMonths(
         usersMonthlyTotalUsersChart: List<MonthlyTotalUsersChart?>?,
         monthlyTotalUsersCount: Int?
@@ -70,33 +110,6 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
             setAllBarChart(barData, barBottomValue)
         }
     }
-//    fun tasksChart(tasksChart: List<Any?>?, weeklyTasksCount: Int?, type: String) {
-//        val list = ArrayList()
-//        when (type){
-//            "week" ->list = tasksChart as List<WeeklyTasksChart>
-//            "day" -> tasksChart as List<DailyLoggedInUsersChart>
-//        }
-//        if (tasksChart != null) {
-//            val barEntry = arrayListOf<BarEntry>()
-//            val barBottomValue = arrayListOf<String>()
-//            for (i in tasksChart.indices) {
-//                barEntry.add(
-//                    BarEntry(i.toFloat(), tasksChart[i]?.usersCount!!.toFloat())
-//                )
-//                barBottomValue.add(convertToDateString(weeklyTasksChart[i]?.createdAt.toString()))
-//            }
-//            val barDataSet = BarDataSet(barEntry, "")
-//            barDataSet.color = ContextCompat.getColor(
-//                itemBinding.root.context,
-//                R.color.graphic_orange
-//            )
-//            itemBinding.graphicDescription.text = weeklyTasksCount.toString()
-//
-//            val barData = BarData(barDataSet)
-//            setAllBarChart(barData, barBottomValue)
-//        }
-//}
-
 
     fun weeklyTasksChart(weeklyTasksChart: List<WeeklyTasksChart?>?, weeklyTasksCount: Int?) {
         if (weeklyTasksChart != null) {
@@ -209,7 +222,7 @@ class AvfastGraphicViewHolder(private val itemBinding: ItemAvfastGraphicBinding)
             xAxis.textColor = ContextCompat.getColor(context, R.color.white)
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.isEnabled = true
-            xAxis.textSize = 14f
+            xAxis.textSize = 12f
             xAxis.axisLineWidth = 1f
             xAxis.axisLineColor = ContextCompat.getColor(context, R.color.white)
             xAxis.gridColor = ContextCompat.getColor(context, R.color.graphic_background_color)

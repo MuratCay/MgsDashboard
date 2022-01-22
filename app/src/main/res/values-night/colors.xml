@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="petner_page_background">#FBF2FF</color>
-    <color name="indicator_unselected_color_petner">#691296</color>
-    <color name="main_page_black">#444444</color>
-    <color name="redmine_graphic_text_color">#898A8D</color>
-</resources>

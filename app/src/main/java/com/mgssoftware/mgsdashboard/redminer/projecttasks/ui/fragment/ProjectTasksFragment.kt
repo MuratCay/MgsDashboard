@@ -56,27 +56,36 @@ class ProjectTasksFragment :
         viewModel.getRvProjectTasks()
     }
 
-    private fun rvProjectTasksObserver(response: RedminerAPI) {
-        val projectTasksList = response.taskCompletedTeam?.sortedBy { it?.points }
+    private fun rvProjectTasksObserver(response: RedminerAPI?) {
+        val projectTasksList = response?.taskCompletedTeam?.sortedBy { it?.points }
             ?.reversed() as ArrayList<TaskCompletedTeam>
-        for (i in 0 until 3){
+        for (i in 0 until 3) {
             projectTasksList.removeAt(0)
         }
-        binding.rvProjectTaskRecycler.adapter = ProjectTaskAdapter(projectTasksList)
+        binding.rvProjectTaskRecycler.apply {
+            visibility = View.VISIBLE
+            setHasFixedSize(true)
+            adapter = ProjectTaskAdapter(projectTasksList)
+        }
+        binding.progressBar2.visibility = View.GONE
     }
 
-    private fun rvFirstPlaceObserver(response: RedminerAPI) {
-        binding.rvFirstPlaceTask.adapter =
-            ProjectFirstPlaceAdapter(response.taskCompletedTeam?.sortedBy { it?.points }
-                ?.reversed() as List<TaskCompletedTeam>)
+    private fun rvFirstPlaceObserver(response: RedminerAPI?) {
+        binding.rvFirstPlaceTask.apply {
+            visibility = View.VISIBLE
+            setHasFixedSize(true)
+            adapter =
+                ProjectFirstPlaceAdapter(response?.taskCompletedTeam?.sortedBy { it?.points }
+                    ?.reversed() as List<TaskCompletedTeam>)
+        }
+        binding.progressBar.visibility = View.GONE
     }
 
 
     private fun model(): Array<String> {
         return arrayOf(
             "İsim", "İsim", "İsim", "İsim",
-            "İsim", "İsim", "İsim",
-            "İsim", "İsim", "İsim",
+            "İsim", "İsim"
         )
     }
 
@@ -87,12 +96,8 @@ class ProjectTasksFragment :
         barEntry.add(BarEntry(1f, 85f))
         barEntry.add(BarEntry(2f, 70f))
         barEntry.add(BarEntry(3f, 60f))
-        barEntry.add(BarEntry(4f, 55f))
-        barEntry.add(BarEntry(5f, 45f))
-        barEntry.add(BarEntry(6f, 40f))
-        barEntry.add(BarEntry(7f, 35f))
-        barEntry.add(BarEntry(8f, 30f))
-        barEntry.add(BarEntry(9f, 25f))
+        barEntry.add(BarEntry(4f, 45f))
+        barEntry.add(BarEntry(5f, 25f))
 
 
         val barDataSet = BarDataSet(barEntry, "Storypoint")
@@ -140,7 +145,7 @@ class ProjectTasksFragment :
 
             axisRight.isEnabled = false
 
-            setExtraOffsets(5f, 0f, 5f, 10f)
+            setExtraOffsets(0f, 0f, 0f, 10f)
 
             legend.form = Legend.LegendForm.SQUARE
             legend.textSize = 14f

@@ -16,9 +16,12 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 Log.e("CountDownTimer", "seconds remaining: ${millisUntilFinished / 1000}")
 
             }
+
             override fun onFinish() {
-                val action = SplashFragmentDirections.actionSplashFragmentToLoginFragment()
-                findNavController().navigate(action)
+                view.post {
+                    val action = SplashFragmentDirections.actionSplashFragmentToLoginFragment()
+                    findNavController().navigate(action)
+                }
             }
         }
         counter.start()

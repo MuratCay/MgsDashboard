@@ -9,13 +9,12 @@
 
     <ImageView
         android:id="@+id/mgsLogoImg"
-        android:layout_width="210dp"
+        android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:layout_marginTop="70dp"
         android:contentDescription="@string/mgs_logo"
         android:src="@drawable/mgs_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,11 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:fontFamily="@font/montserrat_extra_light"
-        android:text="@string/ho_geldiniz"
+        android:text="@string/welcome"
         android:textColor="@color/main_page_blue_light"
-        android:textSize="24sp"
+        android:textSize="@dimen/textview_title_size24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mgsLogoImg" />
 
@@ -39,11 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/montserrat_medium"
-        android:text="@string/main_page_date"
         android:textColor="@color/main_page_black"
-        android:textSize="12sp"
+        android:textSize="@dimen/textview_date_size12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtWelcome" />
 
@@ -59,7 +55,6 @@
         app:cardElevation="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardMobileApplication"
         app:layout_constraintEnd_toStartOf="@+id/cardMobileApplication"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtDate">
@@ -87,7 +82,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:text="@string/redminer"
                 android:textColor="@color/main_page_blue_light"
-                android:textSize="16sp"
+                android:textSize="@dimen/textview_subtitle_size16"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -104,7 +99,6 @@
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cardRedminer"
         app:layout_constraintTop_toBottomOf="@id/txtDate">
 
@@ -130,7 +124,7 @@
                 android:layout_marginBottom="24dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
-                android:text="@string/mobil_uygulamalar"
+                android:text="@string/mobile_apps"
                 android:textColor="@color/main_page_blue_light"
                 android:textSize="16sp"
                 android:textStyle="bold" />

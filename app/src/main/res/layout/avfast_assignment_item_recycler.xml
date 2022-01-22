@@ -14,7 +14,7 @@
         android:contentDescription="@string/todo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_notice_orange" />
+        tools:srcCompat="@drawable/ic_notice_orange" />
 
     <TextView
         android:id="@+id/txtAssignmentInfo"
@@ -23,15 +23,14 @@
         android:layout_marginStart="12dp"
         android:fontFamily="@font/montserrat_regular"
         android:maxWidth="250dp"
-        android:text="@string/bursa_ilinde_yeni_bir_g_rev"
         android:textColor="@color/text_label_color_black_between_gray"
-        android:textSize="14sp"
+        android:textSize="@dimen/textview_size14"
         app:layout_constraintBottom_toBottomOf="@id/imgAssignment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/imgAssignment"
         app:layout_constraintTop_toTopOf="@id/imgAssignment"
-        tools:ignore="RtlSymmetry" />
+        tools:text="@string/welcome" />
 
     <TextView
         android:id="@+id/txtDateOfAssignment"
@@ -40,12 +39,11 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="18dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="@string/dateOfTwoDays"
         android:textColor="@color/text_label_color_black_between_gray"
-        android:textSize="10sp"
+        android:textSize="@dimen/textview_size10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtAssignmentInfo"
-        tools:ignore="SmallSp" />
+        tools:text="@string/welcome" />
 
     <View
         android:id="@+id/line"
@@ -58,7 +56,6 @@
         android:background="@color/line_border_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/txtDateOfAssignment"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@id/imgAssignment"
         app:layout_constraintTop_toBottomOf="@id/txtDateOfAssignment" />
 </androidx.constraintlayout.widget.ConstraintLayout>

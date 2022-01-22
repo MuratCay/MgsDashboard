@@ -1,17 +1,22 @@
 package com.mgssoftware.mgsdashboard.ui.fragment.login
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.mgssoftware.mgsdashboard.base.BaseFragment
 import com.mgssoftware.mgsdashboard.databinding.FragmentLoginBinding
 
+
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         checkUser()
+        hideKeyboard()
     }
 
     private fun checkUser() {
@@ -31,11 +36,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                         val action = LoginFragmentDirections.actionLoginFragmentToMainPageFragment()
                         findNavController().navigate(action)
                     } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Hatalı Giriş: " + p0.exception?.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        if (binding.edtEmail.text?.isNotEmpty() == true) {
+                            Toast.makeText(
+                                requireContext(),
+                                "E-postanız yada Şifreniz boş veya yanlış!",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
                     }
                 }
             } else {
@@ -45,4 +53,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private fun hideKeyboard() {
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
+        binding.constraintLayout.setOnTouchListener { _, _ ->
+            hideKeyboard()
+            false
+        }
+    }
 }

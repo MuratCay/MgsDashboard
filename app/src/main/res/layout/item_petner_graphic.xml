@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -16,10 +17,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/montserrat_medium"
-        android:text="@string/bu_ay_kayitli_kullanici"
         android:textAllCaps="true"
         android:textColor="#404041"
-        android:textSize="16sp" />
+        android:textSize="@dimen/textview_subtitle_size16"
+        tools:text="@string/welcome" />
 
     <TextView
         android:id="@+id/graphicDescription"
@@ -28,9 +29,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/_10"
-        android:textColor="#404041"
-        android:textSize="40sp" />
-
+        android:text="@string/welcome"
+        android:textColor="@color/text_label_color_black_between_gray"
+        android:textSize="@dimen/edittext_input_size40" />
 
 </LinearLayout>

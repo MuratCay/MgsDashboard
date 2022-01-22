@@ -61,20 +61,29 @@ class OpenedTasksFragment :
         for (i in 0 until 3) {
             openedTasksList.removeAt(0)
         }
-        binding.rvTaskRecycler.adapter = OpenedTasksAdapter(openedTasksList)
+        binding.rvTaskRecycler.apply {
+            visibility = View.VISIBLE
+            setHasFixedSize(true)
+            adapter = OpenedTasksAdapter(openedTasksList)
+        }
+        binding.progressBar2.visibility = View.GONE
     }
 
     private fun rvFirstPlaceObserver(response: RedminerAPI?) {
-        binding.rvFirstPlaceTask.adapter =
-            OpenedTasksFirstPlaceAdapter(response?.taskCreated?.sortedBy { it?.points }
-                ?.reversed() as List<TaskCreated>)
+        binding.rvFirstPlaceTask.apply {
+            visibility = View.VISIBLE
+            setHasFixedSize(true)
+            adapter =
+                OpenedTasksFirstPlaceAdapter(response?.taskCreated?.sortedBy { it?.points }
+                    ?.reversed() as List<TaskCreated>)
+        }
+        binding.progressBar.visibility = View.GONE
     }
 
     private fun model(): Array<String> {
         return arrayOf(
             "İsim", "İsim", "İsim", "İsim",
-            "İsim", "İsim", "İsim",
-            "İsim", "İsim", "İsim",
+            "İsim", "İsim"
         )
     }
 
@@ -85,12 +94,8 @@ class OpenedTasksFragment :
         barEntry.add(BarEntry(1f, 85f))
         barEntry.add(BarEntry(2f, 70f))
         barEntry.add(BarEntry(3f, 60f))
-        barEntry.add(BarEntry(4f, 55f))
-        barEntry.add(BarEntry(5f, 45f))
-        barEntry.add(BarEntry(6f, 40f))
-        barEntry.add(BarEntry(7f, 35f))
-        barEntry.add(BarEntry(8f, 30f))
-        barEntry.add(BarEntry(9f, 25f))
+        barEntry.add(BarEntry(4f, 45f))
+        barEntry.add(BarEntry(5f, 25f))
 
 
         val barDataSet = BarDataSet(barEntry, "Storypoint")
@@ -138,7 +143,7 @@ class OpenedTasksFragment :
 
             axisRight.isEnabled = false
 
-            setExtraOffsets(5f, 0f, 5f, 10f)
+            setExtraOffsets(0f, 0f, 0f, 10f)
 
             legend.form = Legend.LegendForm.SQUARE
             legend.textSize = 14f

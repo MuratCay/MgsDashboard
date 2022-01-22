@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textview_size10">10sp</dimen>
+    <dimen name="textview_size14">14sp</dimen>
+    <dimen name="textview_date_size12">12sp</dimen>
+    <dimen name="textview_subtitle_size16">16sp</dimen>
+    <dimen name="textview_title_size18">18sp</dimen>
+    <dimen name="textview_size20">20sp</dimen>
+    <dimen name="textview_size30">30sp</dimen>
+    <dimen name="textview_title_size24">24sp</dimen>
+    <dimen name="edittext_input_size40">40sp</dimen>
+</resources>

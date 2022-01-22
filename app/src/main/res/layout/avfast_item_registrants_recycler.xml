@@ -23,11 +23,11 @@
         android:layout_marginStart="12dp"
         android:fontFamily="@font/montserrat_regular"
         android:textColor="@color/text_label_color_black_between_gray"
-        android:textSize="14sp"
+        android:textSize="@dimen/textview_size14"
         app:layout_constraintBottom_toBottomOf="@id/imgRegistrants"
         app:layout_constraintStart_toEndOf="@id/imgRegistrants"
         app:layout_constraintTop_toTopOf="@id/imgRegistrants"
-        tools:text="Name" />
+        tools:text="@string/welcome" />
 
     <TextView
         android:id="@+id/txtRegistrantsSurname"
@@ -36,12 +36,12 @@
         android:layout_marginStart="12dp"
         android:fontFamily="@font/montserrat_regular"
         android:textColor="@color/text_label_color_black_between_gray"
-        android:textSize="14sp"
+        android:textSize="@dimen/textview_size14"
         app:layout_constraintBottom_toBottomOf="@id/txtRegistrantsName"
         app:layout_constraintStart_toEndOf="@id/txtRegistrantsName"
         app:layout_constraintTop_toTopOf="@id/txtRegistrantsName"
         app:layout_goneMarginStart="10dp"
-        tools:text="SurName" />
+        tools:text="@string/welcome" />
 
     <TextView
         android:id="@+id/txtRegistrantsInfo"
@@ -49,9 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="@string/kay_t_oldu"
+        android:text="@string/registered_done"
         android:textColor="@color/text_label_color_black_between_gray"
-        android:textSize="14sp"
+        android:textSize="@dimen/textview_size14"
         app:layout_constraintBottom_toBottomOf="@id/txtRegistrantsSurname"
         app:layout_constraintStart_toEndOf="@id/txtRegistrantsSurname"
         app:layout_constraintTop_toTopOf="@id/txtRegistrantsSurname"
@@ -64,12 +64,11 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="18dp"
         android:fontFamily="@font/montserrat_regular"
-        android:text="@string/dateOfTwoDays"
         android:textColor="@color/text_label_color_black_between_gray"
-        android:textSize="10sp"
+        android:textSize="@dimen/textview_size10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtRegistrantsName"
-        tools:ignore="SmallSp" />
+        tools:text="@string/welcome" />
 
     <View
         android:id="@+id/line"

@@ -51,8 +51,6 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
         super.onViewCreated(view, savedInstanceState)
         configureBarChart()
         viewModelObserver()
-
-//        binding.rvTaskRecycler.adapter = TaskCompletionAdapter(loadTaskRecycler())
     }
 
     private fun viewModelObserver() {
@@ -63,25 +61,35 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
     }
 
     private fun rvTaskCompletionObserver(response: RedminerAPI?) {
-        val taskCompletedList = response?.taskCompleted?.sortedBy { it?.points }?.reversed() as ArrayList<TaskCompleted>
-        for (i in 0 until 3){
+        val taskCompletedList =
+            response?.taskCompleted?.sortedBy { it?.points }?.reversed() as ArrayList<TaskCompleted>
+        for (i in 0 until 3) {
             taskCompletedList.removeAt(0)
         }
-        binding.rvTaskRecycler.adapter = TaskCompletionAdapter(taskCompletedList)
+        binding.rvTaskRecycler.apply {
+            visibility = View.VISIBLE
+            setHasFixedSize(true)
+            adapter = TaskCompletionAdapter(taskCompletedList)
+        }
+        binding.progressBar2.visibility = View.GONE
     }
 
     private fun rvFirstPlaceObserver(response: RedminerAPI?) {
-        binding.rvFirstPlaceTask.adapter =
-            TaskCompFirstPlaceAdapter(response?.taskCompleted?.sortedBy { it?.points }
-                ?.reversed() as List<TaskCompleted>)
+        binding.rvFirstPlaceTask.apply {
+            visibility = View.VISIBLE
+            setHasFixedSize(true)
+            adapter =
+                TaskCompFirstPlaceAdapter(response?.taskCompleted?.sortedBy { it?.points }
+                    ?.reversed() as List<TaskCompleted>)
+        }
+        binding.progressBar.visibility = View.GONE
     }
 
 
     private fun model(): Array<String> {
         return arrayOf(
             "İsim", "İsim", "İsim", "İsim",
-            "İsim", "İsim", "İsim",
-            "İsim", "İsim", "İsim",
+            "İsim", "İsim"
         )
     }
 
@@ -92,12 +100,8 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
         barEntry.add(BarEntry(1f, 85f))
         barEntry.add(BarEntry(2f, 70f))
         barEntry.add(BarEntry(3f, 60f))
-        barEntry.add(BarEntry(4f, 55f))
-        barEntry.add(BarEntry(5f, 45f))
-        barEntry.add(BarEntry(6f, 40f))
-        barEntry.add(BarEntry(7f, 35f))
-        barEntry.add(BarEntry(8f, 30f))
-        barEntry.add(BarEntry(9f, 25f))
+        barEntry.add(BarEntry(4f, 45f))
+        barEntry.add(BarEntry(5f, 25f))
 
         val barDataSet = BarDataSet(barEntry, "Storypoint")
         barDataSet.color = R.color.main_page_blue_light
@@ -143,7 +147,7 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
 
             axisRight.isEnabled = false
 
-            setExtraOffsets(5f, 0f, 5f, 10f)
+            setExtraOffsets(0f, 0f, 0f, 10f)
 
             legend.form = Legend.LegendForm.SQUARE
             legend.textSize = 14f

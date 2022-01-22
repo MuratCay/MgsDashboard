@@ -63,36 +63,36 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
     }
 
     @SuppressLint("SetTextI18n")
-    private fun numberOfRecentEventsObserver(response: PetnerAPI) {
-        binding.numberOfRecentEvents.text = "Son Olanlar(${response.logs?.size.toString()})"
+    private fun numberOfRecentEventsObserver(response: PetnerAPI?) {
+        binding.numberOfRecentEvents.text = "Son Olaylar(${response?.logs?.size.toString()})"
     }
 
     @SuppressLint("SetTextI18n")
-    private fun numberOfRegisteredObserver(response: PetnerAPI) {
-        binding.numberOfRegistered.text = "Kayıt Olanlar(${response.registerUsers?.size})"
+    private fun numberOfRegisteredObserver(response: PetnerAPI?) {
+        binding.numberOfRegistered.text = "Kayıt Olanlar(${response?.registerUsers?.size})"
     }
 
-    private fun currentNumberOfAdoptionsObserver(response: PetnerAPI) {
-        binding.currentNumberOfAdoptions.text = response.adoptionPetsCount.toString()
+    private fun currentNumberOfAdoptionsObserver(response: PetnerAPI?) {
+        binding.currentNumberOfAdoptions.text = response?.adoptionPetsCount.toString()
     }
 
-    private fun currentNumberOfPetsObserver(response: PetnerAPI) {
-        binding.currentNumberOfPets.text = response.petsCount.toString()
+    private fun currentNumberOfPetsObserver(response: PetnerAPI?) {
+        binding.currentNumberOfPets.text = response?.petsCount.toString()
     }
 
-    private fun numberOfUsersObserver(response: PetnerAPI) {
-        binding.numberOfUsers.text = response.usersCount.toString()
+    private fun numberOfUsersObserver(response: PetnerAPI?) {
+        binding.numberOfUsers.text = response?.usersCount.toString()
     }
 
-    private fun rvAssignmentObserver(response: PetnerAPI) {
-        binding.rvAssignment.adapter = PetnerAssignmentAdapter(response.logs)
+    private fun rvAssignmentObserver(response: PetnerAPI?) {
+        binding.rvAssignment.adapter = PetnerAssignmentAdapter(response?.logs)
     }
 
-    private fun rvRegistrantsObserver(response: PetnerAPI) {
-        binding.rvRegistrants.adapter = PetnerRegistrantsAdapter(response.registerUsers)
+    private fun rvRegistrantsObserver(response: PetnerAPI?) {
+        binding.rvRegistrants.adapter = PetnerRegistrantsAdapter(response?.registerUsers)
     }
 
-    private fun updateGraphicObserver(response: PetnerAPI) {
+    private fun updateGraphicObserver(response: PetnerAPI?) {
         binding.progressBar.visibility = View.GONE
         binding.rvGraphicPetner.visibility = View.VISIBLE
 
@@ -101,7 +101,7 @@ class PetnerFragment : BaseFragment<FragmentPetnerBinding>(FragmentPetnerBinding
             "CHAT SAYISI", "POST YORUM(FORUM)",
         )
         response.let {
-            myAdapter = PetnerGraphicAdapter(list, it)
+            myAdapter = it?.let { it1 -> PetnerGraphicAdapter(list, it1) }!!
         }
         binding.rvGraphicPetner.apply {
             setHasFixedSize(true)

@@ -58,59 +58,59 @@ class AvfastFragment : BaseFragment<FragmentAvfastBinding>(FragmentAvfastBinding
         viewModel.getNumberOfRegistered()
     }
 
-    private fun numberOfUsersObserver(response: AvfastAPI) {
-        binding.numberOfUsers.text = response.usersCount.toString()
+    private fun numberOfUsersObserver(response: AvfastAPI?) {
+        binding.numberOfUsers.text = response?.usersCount.toString()
     }
 
-    private fun numberOfPeopleOnlineObserver(response: AvfastAPI) {
-        binding.numberOfPeopleOnline.text = response.onlineUsersCount.toString()
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun numberOfRegisteredObserver(response: AvfastAPI) {
-        binding.numberOfRegistered?.text =
-            "Kayıt Olanlar(${response.registerUsers?.size.toString()})"
+    private fun numberOfPeopleOnlineObserver(response: AvfastAPI?) {
+        binding.numberOfPeopleOnline.text = response?.onlineUsersCount.toString()
     }
 
     @SuppressLint("SetTextI18n")
-    private fun numberOfRecentEventsObserver(response: AvfastAPI) {
-        binding.numberOfRecentEvents?.text = "Son Olanlar(${response.logs?.size.toString()})"
+    private fun numberOfRegisteredObserver(response: AvfastAPI?) {
+        binding.numberOfRegistered.text =
+            "Kayıt Olanlar(${response?.registerUsers?.size.toString()})"
     }
 
-    private fun rvAssignmentObserver(response: AvfastAPI) {
-        binding.rvAssignment?.adapter = AvfastAssignmentAdapter(response.logs)
+    @SuppressLint("SetTextI18n")
+    private fun numberOfRecentEventsObserver(response: AvfastAPI?) {
+        binding.numberOfRecentEvents.text = "Son Olaylar(${response?.logs?.size.toString()})"
     }
 
-    private fun rvRegistrantsObserver(response: AvfastAPI) {
-        binding.rvRegistrants?.adapter = AvfastRegistrantsAdapter(response.registerUsers)
+    private fun rvAssignmentObserver(response: AvfastAPI?) {
+        binding.rvAssignment.adapter = AvfastAssignmentAdapter(response?.logs)
     }
 
-    private fun updateAvfastRecyclerObserver(response: AvfastAPI) {
+    private fun rvRegistrantsObserver(response: AvfastAPI?) {
+        binding.rvRegistrants.adapter = AvfastRegistrantsAdapter(response?.registerUsers)
+    }
+
+    private fun updateAvfastRecyclerObserver(response: AvfastAPI?) {
         binding.rvGraphicAvfast.visibility = View.VISIBLE
-        binding.progressBar?.visibility = View.GONE
+        binding.progressBar.visibility = View.GONE
 
         val list = listOf(
             "BU AY KAYITLI KULLANICI", "Günlük Giriş", "Yeni Task",
             "Başvurma", "Tamamlanan", "Değerlendirme"
         )
         response.let {
-            myAdapter = AvfastGraphicAdapter(list, it)
+            myAdapter = it?.let { it1 -> AvfastGraphicAdapter(list, it1) }!!
         }
         binding.rvGraphicAvfast.apply {
             setHasFixedSize(true)
             adapter = myAdapter
         }
-        binding.arIndicator?.attachTo(binding.rvGraphicAvfast, true)
+        binding.arIndicator.attachTo(binding.rvGraphicAvfast, true)
     }
 
     private fun configureAssignmentRecyclerView() {
-        binding.rvAssignment?.apply {
+        binding.rvAssignment.apply {
             setHasFixedSize(true)
         }
     }
 
     private fun configureRegistrantsRecyclerView() {
-        binding.rvRegistrants?.apply {
+        binding.rvRegistrants.apply {
             setHasFixedSize(true)
         }
     }

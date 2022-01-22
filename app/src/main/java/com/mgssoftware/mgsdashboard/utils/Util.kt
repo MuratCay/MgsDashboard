@@ -3,7 +3,6 @@ package com.mgssoftware.mgsdashboard.utils
 import android.annotation.SuppressLint
 import com.mgssoftware.mgsdashboard.utils.Constants.DATE_FORMAT
 import java.text.SimpleDateFormat
-import java.util.*
 
 @SuppressLint("SimpleDateFormat")
 fun convertToDateString(date: String): String {
@@ -11,3 +10,5 @@ fun convertToDateString(date: String): String {
         SimpleDateFormat(DATE_FORMAT).parse(date)!!
     )
 }
+
+

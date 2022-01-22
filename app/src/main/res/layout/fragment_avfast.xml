@@ -12,10 +12,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <TextView
             android:id="@+id/totalNumberOfUsersText"
@@ -23,12 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/toplam_kullanici_sayisi"
+            android:text="@string/allNumberOfUser"
             android:textAllCaps="true"
             android:textColor="@color/graphic_orange"
-            android:textSize="17sp"
+            android:textSize="@dimen/textview_title_size18"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,12 +40,10 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/text_label_color_black_between_gray"
-            android:textSize="40sp"
+            android:textSize="@dimen/edittext_input_size40"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/totalNumberOfUsersText"
-            tools:text="@string/_100" />
+            app:layout_constraintTop_toBottomOf="@id/totalNumberOfUsersText" />
 
         <TextView
             android:id="@+id/numberOfPeopleOnlineText"
@@ -56,12 +51,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/online_ki_i_say_s"
+            android:text="@string/onlyPersonSize"
             android:textAllCaps="true"
             android:textColor="@color/graphic_orange"
-            android:textSize="17sp"
+            android:textSize="@dimen/textview_title_size18"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/numberOfUsers" />
 
@@ -75,13 +69,10 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/text_label_color_black_between_gray"
-            android:textSize="40sp"
+            android:textSize="@dimen/edittext_input_size40"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/numberOfPeopleOnlineText"
-            tools:text="@string/_7" />
-
+            app:layout_constraintTop_toBottomOf="@id/numberOfPeopleOnlineText" />
 
         <LinearLayout
             android:id="@+id/viewRvTop"
@@ -132,7 +123,6 @@
             app:indicator_shape="@drawable/round_shape"
             app:indicator_size="25"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewRvTop"
             app:layout_goneMarginTop="24dp"
@@ -145,11 +135,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_semi_bold"
-            android:text="@string/kay_t_olanlar_7"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/textview_subtitle_size16"
             app:layout_constraintStart_toStartOf="@id/viewRvRegistrants"
-            app:layout_constraintTop_toBottomOf="@id/ar_indicator" />
+            app:layout_constraintTop_toBottomOf="@id/ar_indicator"
+            tools:text="@string/registered" />
 
         <LinearLayout
             android:id="@+id/viewRvRegistrants"
@@ -161,7 +151,6 @@
             android:background="@drawable/avfast_corner_registrants"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/numberOfRegistered">
 
@@ -182,11 +171,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_semi_bold"
-            android:text="@string/son_olaylar_7"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/textview_subtitle_size16"
             app:layout_constraintStart_toStartOf="@id/viewRvRegistrants"
-            app:layout_constraintTop_toBottomOf="@id/viewRvRegistrants" />
+            app:layout_constraintTop_toBottomOf="@id/viewRvRegistrants"
+            tools:text="@string/recentEvents" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/viewRvAssignment"
@@ -197,8 +186,8 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="58dp"
             android:background="@color/white"
-            app:cardCornerRadius="8dp"
             android:orientation="vertical"
+            app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -217,5 +206,4 @@
         </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

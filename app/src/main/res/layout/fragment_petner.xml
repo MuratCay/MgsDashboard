@@ -12,10 +12,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <TextView
             android:id="@+id/totalNumberOfUsersText"
@@ -23,12 +21,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_semi_bold"
-            android:text="@string/toplam_kullanici_sayisi"
+            android:text="@string/allNumberOfUser"
             android:textAllCaps="true"
             android:textColor="@color/petner_title_color"
-            android:textSize="17sp"
+            android:textSize="@dimen/textview_title_size18"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,12 +40,11 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="40sp"
+            android:textSize="@dimen/edittext_input_size40"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/totalNumberOfUsersText"
-            tools:text="@string/_2028" />
+            app:layout_constraintTop_toBottomOf="@id/totalNumberOfUsersText" />
 
         <TextView
             android:id="@+id/txtNumberOfPets"
@@ -56,12 +52,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_semi_bold"
-            android:text="@string/evc_l_hayvan_sayisi"
+            android:text="@string/numberOfAdoptions"
             android:textAllCaps="true"
             android:textColor="@color/petner_title_color"
-            android:textSize="17sp"
+            android:textSize="@dimen/textview_title_size18"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/numberOfUsers" />
 
@@ -75,12 +70,11 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="40sp"
+            android:textSize="@dimen/edittext_input_size40"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtNumberOfPets"
-            tools:text="@string/_1015" />
+            app:layout_constraintTop_toBottomOf="@id/txtNumberOfPets" />
 
         <TextView
             android:id="@+id/txtNumberOfAdoptions"
@@ -88,10 +82,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/montserrat_semi_bold"
-            android:text="@string/sah_plend_rme_lani_sayisi"
+            android:text="@string/numberOfAdoptionsAnnouncements"
             android:textAllCaps="true"
             android:textColor="@color/petner_title_color"
-            android:textSize="17sp"
+            android:textSize="@dimen/textview_title_size18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,12 +101,10 @@
             android:gravity="center"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="40sp"
+            android:textSize="@dimen/edittext_input_size40"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtNumberOfAdoptions"
-            tools:text="@string/_27" />
+            app:layout_constraintTop_toBottomOf="@id/txtNumberOfAdoptions" />
 
         <LinearLayout
             android:id="@+id/viewRvGraphic"
@@ -125,7 +117,6 @@
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/currentNumberOfAdoptions">
 
@@ -172,9 +163,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_semi_bold"
-            android:text="@string/kay_t_olanlar_7"
+            tools:text="@string/registered"
             android:textColor="@color/application_purple"
-            android:textSize="16sp"
+            android:textSize="@dimen/textview_subtitle_size16"
             app:layout_constraintStart_toStartOf="@id/viewRvGraphic"
             app:layout_constraintTop_toBottomOf="@id/ar_indicator" />
 
@@ -208,7 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_semi_bold"
-            android:text="@string/son_olaylar_7"
+            tools:text="@string/recentEvents"
             android:textColor="@color/application_purple"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/viewRvAssignment"
@@ -226,17 +217,16 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/numberOfRecentEvents">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAssignment"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp" />
+                android:orientation="vertical"
+                android:paddingBottom="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>
 
