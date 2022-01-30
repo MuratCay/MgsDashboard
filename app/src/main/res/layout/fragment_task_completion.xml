@@ -82,7 +82,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardTaskRecycler"
             android:layout_width="0dp"
@@ -104,11 +103,11 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="vertical"
-                android:paddingBottom="36dp"
+                android:paddingBottom="16dp"
                 android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="10"
                 tools:listitem="@layout/item_task_comp_recycler" />
+
             <ProgressBar
                 android:id="@+id/progressBar2"
                 android:layout_width="wrap_content"

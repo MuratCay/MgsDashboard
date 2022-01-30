@@ -24,13 +24,11 @@ class TaskCompletionAdapter(private val taskCompList: List<TaskCompleted?>?) :
 
     override fun onBindViewHolder(holder: TaskCompletionViewHolder, position: Int) {
         holder.bind(taskCompList?.get(position))
-
-        if (position == (taskCompList?.size ?: 0) - 1) {
-            holder.itemBinding.line.visibility = View.GONE
+        holder.itemBinding.line.visibility = if (position == (taskCompList?.size ?: 0) - 1) {
+            View.GONE
         } else {
             View.VISIBLE
         }
-
     }
 
     override fun getItemCount(): Int = taskCompList!!.size

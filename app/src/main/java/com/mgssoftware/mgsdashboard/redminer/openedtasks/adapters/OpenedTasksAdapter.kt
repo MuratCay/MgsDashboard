@@ -21,8 +21,8 @@ class OpenedTasksAdapter(private val openedTaskList: List<TaskCreated?>?) :
 
     override fun onBindViewHolder(holder: OpenedTasksViewHolder, position: Int) {
         holder.bind(openedTaskList?.get(position))
-        if (position == (openedTaskList?.size ?: 0) - 1) {
-            holder.itemBinding.line.visibility = View.GONE
+        holder.itemBinding.line.visibility = if (position == (openedTaskList?.size ?: 0) - 1) {
+            View.GONE
         } else {
             View.VISIBLE
         }

@@ -21,8 +21,8 @@ class ProjectTaskAdapter(private val projectList: List<TaskCompletedTeam?>?) :
 
     override fun onBindViewHolder(holder: ProjectTasksViewHolder, position: Int) {
         holder.bind(projectList?.get(position))
-        if (position == (projectList?.size ?: 0) - 1) {
-            holder.itemBinding.line.visibility = View.GONE
+        holder.itemBinding.line.visibility = if (position == (projectList?.size ?: 0) - 1) {
+            View.GONE
         } else {
             View.VISIBLE
         }
