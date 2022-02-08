@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".redminer.openedtasks.ui.fragment.OpenedTasksFragment">
+    tools:context=".reminder.openedtasks.ui.fragment.OpenedTasksFragment">
 
     <ScrollView
         android:layout_width="match_parent"

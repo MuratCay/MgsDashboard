@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/redminer_background"
+    android:background="@color/reminder_background"
     tools:context=".ui.fragment.mainpage.MainPageFragment">
 
     <ImageView
@@ -64,14 +64,16 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:id="@+id/imgRedminer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:src="@drawable/ic_redminer_icon" />
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_reminder_icon" />
 
             <TextView
                 android:id="@+id/txtRedminer"
@@ -80,7 +82,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/redminer"
+                android:text="@string/reminder"
                 android:textColor="@color/main_page_blue_light"
                 android:textSize="@dimen/textview_subtitle_size16"
                 android:textStyle="bold" />
@@ -107,13 +109,15 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:id="@+id/imgPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/ic_phone_icon" />
 
             <TextView

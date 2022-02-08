@@ -1,22 +1,22 @@
-package com.mgssoftware.mgsdashboard.avfast.data.remote
+package com.mgssoftware.mgsdashboard.reminder.data.remote
 
-import com.mgssoftware.mgsdashboard.utils.Constants.AVFAST_BASE_URL
+import com.mgssoftware.mgsdashboard.utils.Constants.REMINDER_BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-abstract class AvfastRetrofitClient {
+abstract class ReminderRetrofitClient {
     companion object {
         @Volatile
         private var INSTANCE: Retrofit? = null
 
-        fun getAvfastRetrofitClient(): Retrofit {
+        fun getReminderRetrofitClient(): Retrofit {
             return INSTANCE ?: synchronized(this) {
                 val instance = Retrofit.Builder()
-                    .baseUrl(AVFAST_BASE_URL)
-                    .client(clientSetup)
+                    .baseUrl(REMINDER_BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
+                    .client(clientSetup)
                     .build()
                 INSTANCE = instance
                 instance
@@ -24,6 +24,7 @@ abstract class AvfastRetrofitClient {
         }
     }
 }
+
 val clientSetup: OkHttpClient = OkHttpClient.Builder()
     .connectTimeout(2, TimeUnit.MINUTES)
     .writeTimeout(2, TimeUnit.MINUTES) // write timeout

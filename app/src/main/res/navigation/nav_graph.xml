@@ -38,11 +38,11 @@
             app:destination="@id/mainFragment" />
         <action
             android:id="@+id/action_mainPageFragment_to_redminerMainFragment"
-            app:destination="@id/redminerMainFragment" />
+            app:destination="@id/reminderMainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/redminerMainFragment"
-        android:name="com.mgssoftware.mgsdashboard.ui.fragment.redminermain.RedminerMainFragment"
+        android:id="@+id/reminderMainFragment"
+        android:name="com.mgssoftware.mgsdashboard.ui.fragment.remindermain.ReminderMainFragment"
         android:label="fragment_redminer_main"
-        tools:layout="@layout/fragment_redminer_main" />
+        tools:layout="@layout/fragment_reminder_main" />
 </navigation>

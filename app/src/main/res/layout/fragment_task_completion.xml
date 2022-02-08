@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/redminer_background"
-    tools:context=".redminer.taskcompletion.ui.fragment.TaskCompletionFragment">
+    android:background="@color/reminder_background"
+    tools:context=".reminder.taskcompletion.ui.fragment.TaskCompletionFragment">
 
     <ScrollView
         android:layout_width="match_parent"

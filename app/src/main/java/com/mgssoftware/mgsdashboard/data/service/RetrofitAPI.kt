@@ -2,7 +2,7 @@ package com.mgssoftware.mgsdashboard.data.service
 
 import com.mgssoftware.mgsdashboard.avfast.data.model.AvfastAPI
 import com.mgssoftware.mgsdashboard.petner.data.model.PetnerAPI
-import com.mgssoftware.mgsdashboard.redminer.data.model.RedminerAPI
+import com.mgssoftware.mgsdashboard.reminder.data.model.ReminderAPI
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -16,5 +16,5 @@ interface RetrofitAPI {
     suspend fun getPetnerUser(): PetnerAPI
 
     @GET("storypoints")
-    suspend fun getRedminer(): RedminerAPI
+    suspend fun getReminder(): ReminderAPI
 }
