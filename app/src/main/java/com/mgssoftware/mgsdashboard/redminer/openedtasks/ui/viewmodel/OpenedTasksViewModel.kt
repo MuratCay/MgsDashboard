@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mgssoftware.mgsdashboard.data.repository.MainRepository
 import com.mgssoftware.mgsdashboard.redminer.data.model.RedminerAPI
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class OpenedTasksViewModel(private val repository: MainRepository) : ViewModel() {
@@ -18,8 +19,19 @@ class OpenedTasksViewModel(private val repository: MainRepository) : ViewModel()
         get() = mutableRvOpenedTasks
 
     fun getRvOpenedTasks() {
-        viewModelScope.launch {
-            mutableRvOpenedTasks.value = repository.getRedminerUser()
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = repository.getRedminerUser()
+            val openedTasksList = response.taskCreated?.sortedBy { it?.points }
+                ?.reversed()?.filterIndexed { index, taskCreated ->
+                    index != 0 && index != 1 && index != 3
+                }
+//            for (i in 0 until 3) {
+//                openedTasksList.removeAt(i)
+//            }
+
+
+//            val openedTask = response?.taskCreated?.sortedBy { it?.points }?.reversed()
+            mutableRvOpenedTasks.postValue(repository.getRedminerUser())
         }
     }
 

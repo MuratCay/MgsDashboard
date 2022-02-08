@@ -26,7 +26,7 @@ abstract class RedminerRetrofitClient {
 }
 
 val clientSetup: OkHttpClient = OkHttpClient.Builder()
-    .connectTimeout(5, TimeUnit.MINUTES)
-    .writeTimeout(5, TimeUnit.MINUTES) // write timeout
-    .readTimeout(5, TimeUnit.MINUTES) // read timeout
+    .connectTimeout(2, TimeUnit.MINUTES)
+    .writeTimeout(2, TimeUnit.MINUTES) // write timeout
+    .readTimeout(2, TimeUnit.MINUTES) // read timeout
     .build()

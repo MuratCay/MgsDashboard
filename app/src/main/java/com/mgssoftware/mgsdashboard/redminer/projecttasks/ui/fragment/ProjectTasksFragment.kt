@@ -18,7 +18,6 @@ import com.mgssoftware.mgsdashboard.data.repository.MainRepository
 import com.mgssoftware.mgsdashboard.data.service.RetrofitAPI
 import com.mgssoftware.mgsdashboard.databinding.FragmentProjectTasksBinding
 import com.mgssoftware.mgsdashboard.redminer.data.model.RedminerAPI
-import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCompletedTeam
 import com.mgssoftware.mgsdashboard.redminer.data.remote.RedminerRetrofitClient
 import com.mgssoftware.mgsdashboard.redminer.projecttasks.adapters.ProjectFirstPlaceAdapter
 import com.mgssoftware.mgsdashboard.redminer.projecttasks.adapters.ProjectTaskAdapter
@@ -57,11 +56,10 @@ class ProjectTasksFragment :
     }
 
     private fun rvProjectTasksObserver(response: RedminerAPI?) {
-        val projectTasksList = response?.taskCompletedTeam?.sortedBy { it?.points }
-            ?.reversed() as ArrayList<TaskCompletedTeam>
-        for (i in 0 until 3) {
-            projectTasksList.removeAt(0)
-        }
+        val projectTasksList = response?.taskCompletedTeam?.sortedByDescending { it?.points }
+            ?.filterIndexed { index, _ ->
+                index != 0 && index != 1 && index != 2
+            }
         binding.rvProjectTaskRecycler.apply {
             visibility = View.VISIBLE
             setHasFixedSize(true)
@@ -75,8 +73,7 @@ class ProjectTasksFragment :
             visibility = View.VISIBLE
             setHasFixedSize(true)
             adapter =
-                ProjectFirstPlaceAdapter(response?.taskCompletedTeam?.sortedBy { it?.points }
-                    ?.reversed() as List<TaskCompletedTeam>)
+                ProjectFirstPlaceAdapter(response?.taskCompletedTeam?.sortedByDescending { it?.points })
         }
         binding.progressBar.visibility = View.GONE
     }
@@ -118,7 +115,6 @@ class ProjectTasksFragment :
             data.setDrawValues(true)
             setTouchEnabled(false)
 
-
             axisLeft.textColor = ContextCompat.getColor(context, R.color.redmine_graphic_text_color)
             axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.main_page_blue_light)
             axisLeft.axisLineWidth = 1f
@@ -155,5 +151,4 @@ class ProjectTasksFragment :
         }
 
     }
-
 }

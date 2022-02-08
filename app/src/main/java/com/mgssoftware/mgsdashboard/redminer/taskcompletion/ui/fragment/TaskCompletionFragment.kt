@@ -27,6 +27,7 @@ import com.mgssoftware.mgsdashboard.ui.factory.ViewModelFactory
 import retrofit2.Retrofit
 
 
+@Suppress("UNCHECKED_CAST")
 class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
     FragmentTaskCompletionBinding::inflate
 ) {
@@ -62,10 +63,10 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
 
     private fun rvTaskCompletionObserver(response: RedminerAPI?) {
         val taskCompletedList =
-            response?.taskCompleted?.sortedBy { it?.points }?.reversed() as ArrayList<TaskCompleted>
-        for (i in 0 until 3) {
-            taskCompletedList.removeAt(0)
-        }
+            response?.taskCompleted?.sortedByDescending { it?.points }
+                ?.filterIndexed { index, _ ->
+                    index != 0 && index != 1 && index != 2
+                }
         binding.rvTaskRecycler.apply {
             visibility = View.VISIBLE
             setHasFixedSize(true)
@@ -78,9 +79,9 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
         binding.rvFirstPlaceTask.apply {
             visibility = View.VISIBLE
             setHasFixedSize(true)
+            Suppress("unchecked_cast")
             adapter =
-                TaskCompFirstPlaceAdapter(response?.taskCompleted?.sortedBy { it?.points }
-                    ?.reversed() as List<TaskCompleted>)
+                TaskCompFirstPlaceAdapter(response?.taskCompleted?.sortedByDescending { it?.points })
         }
         binding.progressBar.visibility = View.GONE
     }
@@ -155,6 +156,5 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
 
             invalidate()
         }
-
     }
 }

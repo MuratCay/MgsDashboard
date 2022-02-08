@@ -18,7 +18,6 @@ import com.mgssoftware.mgsdashboard.data.repository.MainRepository
 import com.mgssoftware.mgsdashboard.data.service.RetrofitAPI
 import com.mgssoftware.mgsdashboard.databinding.FragmentOpenedTasksBinding
 import com.mgssoftware.mgsdashboard.redminer.data.model.RedminerAPI
-import com.mgssoftware.mgsdashboard.redminer.data.model.TaskCreated
 import com.mgssoftware.mgsdashboard.redminer.data.remote.RedminerRetrofitClient
 import com.mgssoftware.mgsdashboard.redminer.openedtasks.adapters.OpenedTasksAdapter
 import com.mgssoftware.mgsdashboard.redminer.openedtasks.adapters.OpenedTasksFirstPlaceAdapter
@@ -56,11 +55,10 @@ class OpenedTasksFragment :
     }
 
     private fun rvTaskCompletionObserver(response: RedminerAPI?) {
-        val openedTasksList = response?.taskCreated?.sortedBy { it?.points }
-            ?.reversed() as ArrayList<TaskCreated>
-        for (i in 0 until 3) {
-            openedTasksList.removeAt(0)
-        }
+        val openedTasksList = response?.taskCreated?.sortedByDescending { it?.points }
+            ?.filterIndexed { index, _ ->
+                index != 0 && index != 1 && index != 2
+            }
         binding.rvTaskRecycler.apply {
             visibility = View.VISIBLE
             setHasFixedSize(true)
@@ -74,8 +72,7 @@ class OpenedTasksFragment :
             visibility = View.VISIBLE
             setHasFixedSize(true)
             adapter =
-                OpenedTasksFirstPlaceAdapter(response?.taskCreated?.sortedBy { it?.points }
-                    ?.reversed() as List<TaskCreated>)
+                OpenedTasksFirstPlaceAdapter(response?.taskCreated?.sortedByDescending { it?.points })
         }
         binding.progressBar.visibility = View.GONE
     }
@@ -116,7 +113,6 @@ class OpenedTasksFragment :
             data.setDrawValues(true)
             setTouchEnabled(false)
 
-
             axisLeft.textColor = ContextCompat.getColor(context, R.color.redmine_graphic_text_color)
             axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.main_page_blue_light)
             axisLeft.axisLineWidth = 1f
@@ -151,6 +147,5 @@ class OpenedTasksFragment :
 
             invalidate()
         }
-
     }
 }
