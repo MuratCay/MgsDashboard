@@ -10,5 +10,11 @@ fun convertToDateString(date: String): String {
         SimpleDateFormat(DATE_FORMAT).parse(date)!!
     )
 }
+fun model(): Array<String> {
+    return arrayOf(
+        "İsim", "İsim", "İsim", "İsim",
+        "İsim", "İsim"
+    )
+}
 
 

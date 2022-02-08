@@ -23,6 +23,7 @@ import com.mgssoftware.mgsdashboard.reminder.projecttasks.adapters.ProjectFirstP
 import com.mgssoftware.mgsdashboard.reminder.projecttasks.adapters.ProjectTaskAdapter
 import com.mgssoftware.mgsdashboard.reminder.projecttasks.ui.viewmodel.ProjectTasksViewModel
 import com.mgssoftware.mgsdashboard.ui.factory.ViewModelFactory
+import com.mgssoftware.mgsdashboard.utils.model
 import retrofit2.Retrofit
 
 class ProjectTasksFragment :
@@ -43,7 +44,6 @@ class ProjectTasksFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         configureBarChart()
         viewModelObserver()
     }
@@ -78,14 +78,6 @@ class ProjectTasksFragment :
         binding.progressBar.visibility = View.GONE
     }
 
-
-    private fun model(): Array<String> {
-        return arrayOf(
-            "İsim", "İsim", "İsim", "İsim",
-            "İsim", "İsim"
-        )
-    }
-
     private fun configureBarChart() {
         val barEntry = arrayListOf<BarEntry>()
 
@@ -95,7 +87,6 @@ class ProjectTasksFragment :
         barEntry.add(BarEntry(3f, 60f))
         barEntry.add(BarEntry(4f, 45f))
         barEntry.add(BarEntry(5f, 25f))
-
 
         val barDataSet = BarDataSet(barEntry, "Storypoint")
         barDataSet.color = R.color.main_page_blue_light
@@ -115,7 +106,8 @@ class ProjectTasksFragment :
             data.setDrawValues(true)
             setTouchEnabled(false)
 
-            axisLeft.textColor = ContextCompat.getColor(context, R.color.reminder_graphic_text_color)
+            axisLeft.textColor =
+                ContextCompat.getColor(context, R.color.reminder_graphic_text_color)
             axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.main_page_blue_light)
             axisLeft.axisLineWidth = 1f
             axisLeft.isEnabled = true
@@ -149,6 +141,5 @@ class ProjectTasksFragment :
 
             invalidate()
         }
-
     }
 }

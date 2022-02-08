@@ -18,12 +18,12 @@ import com.mgssoftware.mgsdashboard.data.repository.MainRepository
 import com.mgssoftware.mgsdashboard.data.service.RetrofitAPI
 import com.mgssoftware.mgsdashboard.databinding.FragmentTaskCompletionBinding
 import com.mgssoftware.mgsdashboard.reminder.data.model.ReminderAPI
-import com.mgssoftware.mgsdashboard.reminder.data.model.TaskCompleted
 import com.mgssoftware.mgsdashboard.reminder.data.remote.ReminderRetrofitClient
 import com.mgssoftware.mgsdashboard.reminder.taskcompletion.adapters.TaskCompFirstPlaceAdapter
 import com.mgssoftware.mgsdashboard.reminder.taskcompletion.adapters.TaskCompletionAdapter
 import com.mgssoftware.mgsdashboard.reminder.taskcompletion.ui.viewmodel.TasksCompletionViewModel
 import com.mgssoftware.mgsdashboard.ui.factory.ViewModelFactory
+import com.mgssoftware.mgsdashboard.utils.model
 import retrofit2.Retrofit
 
 
@@ -31,10 +31,6 @@ import retrofit2.Retrofit
 class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
     FragmentTaskCompletionBinding::inflate
 ) {
-    lateinit var adapter: TaskCompletionAdapter
-
-    var list: ArrayList<TaskCompleted> = arrayListOf()
-
     private val retrofit: Retrofit by lazy {
         ReminderRetrofitClient.getReminderRetrofitClient()
     }
@@ -79,19 +75,10 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
         binding.rvFirstPlaceTask.apply {
             visibility = View.VISIBLE
             setHasFixedSize(true)
-            Suppress("unchecked_cast")
             adapter =
                 TaskCompFirstPlaceAdapter(response?.taskCompleted?.sortedByDescending { it?.points })
         }
         binding.progressBar.visibility = View.GONE
-    }
-
-
-    private fun model(): Array<String> {
-        return arrayOf(
-            "İsim", "İsim", "İsim", "İsim",
-            "İsim", "İsim"
-        )
     }
 
     private fun configureBarChart() {
@@ -122,7 +109,8 @@ class TaskCompletionFragment : BaseFragment<FragmentTaskCompletionBinding>(
             data.setDrawValues(true)
             setTouchEnabled(false)
 
-            axisLeft.textColor = ContextCompat.getColor(context, R.color.reminder_graphic_text_color)
+            axisLeft.textColor =
+                ContextCompat.getColor(context, R.color.reminder_graphic_text_color)
             axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.main_page_blue_light)
             axisLeft.axisLineWidth = 1f
             axisLeft.isEnabled = true

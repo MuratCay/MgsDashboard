@@ -23,6 +23,7 @@ import com.mgssoftware.mgsdashboard.reminder.openedtasks.adapters.OpenedTasksAda
 import com.mgssoftware.mgsdashboard.reminder.openedtasks.adapters.OpenedTasksFirstPlaceAdapter
 import com.mgssoftware.mgsdashboard.reminder.openedtasks.ui.viewmodel.OpenedTasksViewModel
 import com.mgssoftware.mgsdashboard.ui.factory.ViewModelFactory
+import com.mgssoftware.mgsdashboard.utils.model
 import retrofit2.Retrofit
 
 class OpenedTasksFragment :
@@ -77,13 +78,6 @@ class OpenedTasksFragment :
         binding.progressBar.visibility = View.GONE
     }
 
-    private fun model(): Array<String> {
-        return arrayOf(
-            "İsim", "İsim", "İsim", "İsim",
-            "İsim", "İsim"
-        )
-    }
-
     private fun configureBarChart() {
         val barEntry = arrayListOf<BarEntry>()
 
@@ -113,7 +107,8 @@ class OpenedTasksFragment :
             data.setDrawValues(true)
             setTouchEnabled(false)
 
-            axisLeft.textColor = ContextCompat.getColor(context, R.color.reminder_graphic_text_color)
+            axisLeft.textColor =
+                ContextCompat.getColor(context, R.color.reminder_graphic_text_color)
             axisLeft.axisLineColor = ContextCompat.getColor(context, R.color.main_page_blue_light)
             axisLeft.axisLineWidth = 1f
             axisLeft.isEnabled = true
