@@ -8,9 +8,7 @@ ARIndicatorView, MPAndroidChart, Retrofit,
 Kotlin Serilization, ViewModel, LiveData, Hilt, Glide.
 
 ## Screen Shots
-![](screenshots/screenshots1.png)
-![](screenshots/screenshots2.png)
-![](screenshots/screenshots3.png)
-![](screenshots/screenshots4.png)
-![](screenshots/screenshots5.png)
-![](screenshots/screenshots6.png)
+<img src="screenshots/screenshots1.png" width="250" height="500"> <img src="screenshots/screenshots2.png" width="250" height="500"> <img src="screenshots/screenshots3.png" width="250" height="500"> </br>
+<img src="screenshots/screenshots4.png" width="250" height="500">
+<img src="screenshots/screenshots5.png" width="250" height="500">
+<img src="screenshots/screenshots6.png" width="250" height="500">
