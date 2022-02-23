@@ -8,4 +8,3 @@ ARIndicatorView, MPAndroidChart, Retrofit,
 Kotlin Serilization, ViewModel, LiveData, Hilt, Glide.
 
 
-**Presenter:** PHP
